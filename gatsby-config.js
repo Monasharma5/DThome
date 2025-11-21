@@ -20,6 +20,15 @@ module.exports = {
       timeout: 180000,   // Increase timeout for Ngrok
       perPage: 10,       // Avoid huge slow requests
     },
+     type: {
+      MediaItem: {
+        lazyNodes: true,     // Do NOT download images
+      },
+    },
+
+    html: {
+      useGatsbyImage: false, // Prevent image fetching
+    },
       },
     },
     "gatsby-plugin-sharp",
