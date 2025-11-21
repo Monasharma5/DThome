@@ -17,16 +17,17 @@ module.exports = {
       options: {
         url: "https://determinate-arrant-florencio.ngrok-free.dev/backup151025/graphql",
         schema: {
-      timeout: 180000,   // Increase timeout for Ngrok
-      perPage: 10,       // Avoid huge slow requests
-    },
-     type: {
+          timeout: 180000,          // allow slow ngrok
+          perPage: 5,
+          concurrentRequests: 1,
+        },
+
+        type: {
           MediaItem: {
-            createFileNodes: false,
+            createFileNodes: false,   // the ONLY valid config for Gatsby v4+
           },
         },
 
-        // Prevent gatsby-image from trying to process remote images
         html: {
           useGatsbyImage: false,
         },
