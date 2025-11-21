@@ -17,8 +17,8 @@ module.exports = {
       options: {
         url: "https://determinate-arrant-florencio.ngrok-free.dev/backup151025/graphql",
         schema: {
-      timeout: 150000,   // Increase timeout for Ngrok
-      perPage: 20,       // Avoid huge slow requests
+      timeout: 180000,   // Increase timeout for Ngrok
+      perPage: 10,       // Avoid huge slow requests
     },
       },
     },
