@@ -21,14 +21,15 @@ module.exports = {
       perPage: 10,       // Avoid huge slow requests
     },
      type: {
-      MediaItem: {
-        lazyNodes: true,     // Do NOT download images
-      },
-    },
+          MediaItem: {
+            createFileNodes: false,
+          },
+        },
 
-    html: {
-      useGatsbyImage: false, // Prevent image fetching
-    },
+        // Prevent gatsby-image from trying to process remote images
+        html: {
+          useGatsbyImage: false,
+        },
       },
     },
     "gatsby-plugin-sharp",
