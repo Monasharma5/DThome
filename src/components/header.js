@@ -27,31 +27,52 @@ const data = {
       navItemType: "Link",
       href: "/ai-services",
       text: "AI Services",
+      children: [
+        { href: "/ai-agent-development", text: "AI Agent Development" },
+        { href: "/ai-automation-services", text: "AI Automation Services" },
+        { href: "/ai-integration-services", text: "AI Integration Services" },
+        { href: "/ai-services/ai-chatbot-development-services", text: "AI Chatbot Development"},
+        { href: "/ai-services/chatgpt-integration", text: "Chatbot Integration"}
+      ],
     },
     {
       id: 1,
       navItemType: "Link",
       href: "#!",
       text: "Services",
+      children: [
+        { href: "/web-development", text: "Web Development" },
+        { href: "/mobile-app", text: "Mobile App" }
+      ]
     },
     {
       id: 2,
       navItemType: "Link",
       href: "#!",
       text: "Industries",
+      children: [
+        { href: "/healthcare", text: "Healthcare" },
+        { href: "/finance", text: "Finance" }
+      ]
     },
     {
       id: 3,
       navItemType: "Link",
       href: "/portfolio",
       text: "Portfolio",
+      
     },
     {
       id: 4,
       navItemType: "Link",
       href: "#!",
       text: "Technologies",
+      children: [
+        { href: "/langchain", text: "LangChain" },
+        { href: "/flutter", text: "Flutter" }
+      ]
     },
+  
     {
       id: 5,
       navItemType: "Link",
