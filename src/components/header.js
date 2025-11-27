@@ -26,30 +26,48 @@ const data = {
       id: 0,
       navItemType: "Link",
       href: "#!",
-      text: "Products",
+      text: "AI Services",
     },
     {
       id: 1,
       navItemType: "Link",
       href: "#!",
-      text: "Pricing",
+      text: "Services",
     },
     {
       id: 2,
       navItemType: "Link",
       href: "#!",
-      text: "About",
+      text: "Industries",
     },
     {
       id: 3,
       navItemType: "Link",
       href: "#!",
-      text: "Blog",
+      text: "Portfolio",
+    },
+    {
+      id: 4,
+      navItemType: "Link",
+      href: "#!",
+      text: "Technologies",
+    },
+    {
+      id: 5,
+      navItemType: "Link",
+      href: "#!",
+      text: "Contact Us",
+    },
+    {
+      id: 6,
+      navItemType: "Link",
+      href: "#!",
+      text: "About Us",
     },
   ],
   cta: {
     href: "#!",
-    text: "Sign Up",
+    text: "Contact",
   },
 }
 
