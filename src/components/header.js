@@ -25,7 +25,7 @@ const data = {
     {
       id: 0,
       navItemType: "Link",
-      href: "#!",
+      href: "/ai-services",
       text: "AI Services",
     },
     {
@@ -43,7 +43,7 @@ const data = {
     {
       id: 3,
       navItemType: "Link",
-      href: "#!",
+      href: "/portfolio",
       text: "Portfolio",
     },
     {
@@ -55,18 +55,18 @@ const data = {
     {
       id: 5,
       navItemType: "Link",
-      href: "#!",
+      href: "/contact-us",
       text: "Contact Us",
     },
     {
       id: 6,
       navItemType: "Link",
-      href: "#!",
+      href: "/about-us",
       text: "About Us",
     },
   ],
   cta: {
-    href: "#!",
+    href: "/contact",
     text: "Contact",
   },
 }

@@ -19,7 +19,7 @@ module.exports = {
         schema: {
           timeout: 180000,          // allow slow ngrok
           perPage: 5,
-          concurrentRequests: 1,
+          requestConcurrency: 1,
         },
 
         type: {
