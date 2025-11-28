@@ -192,11 +192,12 @@ export default function Footer(props) {
 import * as React from "react"
 import {
   Twitter,
-  Twitch,
   Instagram,
   Facebook,
   Youtube,
   GitHub,
+  Mail,
+  Linkedin
 } from "react-feather"
 import {
   Container,
@@ -209,35 +210,36 @@ import {
   IconLink,
   VisuallyHidden,
 } from "./ui"
-import BrandLogo from "./brand-logo"
 
 const socialMedia = {
-  TWITTER: { url: "https://twitter.com", name: "Twitter", icon: <Twitter /> },
-  INSTAGRAM: { url: "https://instagram.com", name: "Instagram", icon: <Instagram /> },
-  FACEBOOK: { url: "https://facebook.com", name: "Facebook", icon: <Facebook /> },
-  YOUTUBE: { url: "https://youtube.com", name: "YouTube", icon: <Youtube /> },
   GITHUB: { url: "https://github.com", name: "GitHub", icon: <GitHub /> },
-  TWITCH: { url: "https://twitch.tv", name: "Twitch", icon: <Twitch /> },
+  INSTAGRAM: { url: "https://instagram.com", name: "Instagram", icon: <Instagram /> },
+  TWITTER: { url: "https://twitter.com", name: "Twitter", icon: <Twitter /> },
+  YOUTUBE: { url: "https://youtube.com", name: "YouTube", icon: <Youtube /> },
+  FACEBOOK: { url: "https://facebook.com", name: "Facebook", icon: <Facebook /> },
+  LINKEDIN: { url: "https://linkedin.com", name: "LinkedIn", icon: <Linkedin /> },
+  EMAIL: { url: "mailto:contact@example.com", name: "Email", icon: <Mail /> },
 }
 
 const getSocialURL = ({ service, username }) => {
   const domain = socialMedia[service]?.url
   if (!domain) return false
-  return `${domain}/${username}`
+  return username ? `${domain}/${username}` : domain
 }
 
 const getSocialIcon = ({ service }) => socialMedia[service]?.icon
 const getSocialName = ({ service }) => socialMedia[service]?.name
 
-// NEW DATA FOR 4-COLUMN FOOTER
+// NEW FOOTER DATA
 const data = {
   follow: [
-    { service: "GITHUB", username: "gatsbyjs" },
-    { service: "INSTAGRAM", username: "gatsbyjs" },
-    { service: "TWITTER", username: "gatsbyjs" },
-    { service: "YOUTUBE", username: "gatsbyjs" },
-    { service: "FACEBOOK", username: "gatsbyjs" },
-    { service: "TWITCH", username: "gatsbyjs" },
+    { service: "GITHUB" },
+    { service: "INSTAGRAM" },
+    { service: "TWITTER" },
+    { service: "YOUTUBE" },
+    { service: "FACEBOOK" },
+    { service: "LINKEDIN" },
+    { service: "EMAIL" },
   ],
 
   artificial: [
@@ -269,20 +271,14 @@ export default function Footer() {
     <Box as="footer" paddingY={6}>
       <Container>
 
-        {/* TOP — LOGO CENTERED */}
-        <Flex variant="center">
-          <BrandLogo />
-        </Flex>
-
-        <Space size={6} />
-
         {/* FOUR COLUMN FOOTER */}
-        <Flex responsive variant="start">
+        <Flex responsive variant="start" gap={5}>
 
           {/* FOLLOW US */}
           <Box>
             <Text variant="bold">FOLLOW US</Text>
             <Space size={3} />
+
             <FlexList variant="start" gap={3}>
               {data.follow.map((link, i) => {
                 const url = getSocialURL(link)
@@ -300,13 +296,12 @@ export default function Footer() {
             </FlexList>
           </Box>
 
-          <Space />
-
           {/* ARTIFICIAL INTELLIGENCE */}
           <Box>
             <Text variant="bold">ARTIFICIAL INTELLIGENCE</Text>
             <Space size={3} />
-            <FlexList variant="start">
+
+            <FlexList variant="start" direction="vertical" gap={2}>
               {data.artificial.map((item, i) => (
                 <li key={i}>
                   <NavLink to={item.href}>{item.text}</NavLink>
@@ -315,13 +310,12 @@ export default function Footer() {
             </FlexList>
           </Box>
 
-          <Space />
-
           {/* APP DEVELOPMENT */}
           <Box>
             <Text variant="bold">APP DEVELOPMENT</Text>
             <Space size={3} />
-            <FlexList variant="start">
+
+            <FlexList variant="start" direction="vertical" gap={2}>
               {data.appdev.map((item, i) => (
                 <li key={i}>
                   <NavLink to={item.href}>{item.text}</NavLink>
@@ -330,13 +324,12 @@ export default function Footer() {
             </FlexList>
           </Box>
 
-          <Space />
-
           {/* RESOURCES */}
           <Box>
             <Text variant="bold">RESOURCES</Text>
             <Space size={3} />
-            <FlexList variant="start">
+
+            <FlexList variant="start" direction="vertical" gap={2}>
               {data.resources.map((item, i) => (
                 <li key={i}>
                   <NavLink to={item.href}>{item.text}</NavLink>
