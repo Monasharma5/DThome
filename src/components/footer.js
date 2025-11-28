@@ -271,64 +271,73 @@ export default function Footer() {
     <Box as="footer" paddingY={6}>
       <Container>
 
-        <Flex responsive variant="start" gap={5}>
+        {/* ---- 4-column footer using CSS GRID ---- */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "40px",
+            alignItems: "start",
+          }}
+        >
 
           {/* FOLLOW US */}
-          <Box style={{ display: "flex", flexDirection: "column" }}>
+          <div>
             <Text variant="bold">FOLLOW US</Text>
             <Space size={3} />
 
-            <Flex direction="row" gap={3}>
-              {data.follow.map((item, i) => {
-                const url = getSocialURL(item)
-                return (
-                  <IconLink key={i} to={url}>
-                    <VisuallyHidden>{getSocialName(item)}</VisuallyHidden>
-                    {getSocialIcon(item)}
-                  </IconLink>
-                )
-              })}
+            <Flex gap={3}>
+              {data.follow.map((item, i) => (
+                <IconLink key={i} to={getSocialURL(item)}>
+                  {getSocialIcon(item)}
+                </IconLink>
+              ))}
             </Flex>
-          </Box>
+          </div>
 
           {/* ARTIFICIAL INTELLIGENCE */}
-          <Box style={{ display: "flex", flexDirection: "column" }}>
+          <div>
             <Text variant="bold">ARTIFICIAL INTELLIGENCE</Text>
             <Space size={3} />
-            <Flex direction="column" gap={2}>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {data.artificial.map((item, i) => (
                 <NavLink key={i} to={item.href}>{item.text}</NavLink>
               ))}
-            </Flex>
-          </Box>
+            </div>
+          </div>
 
           {/* APP DEVELOPMENT */}
-          <Box style={{ display: "flex", flexDirection: "column" }}>
+          <div>
             <Text variant="bold">APP DEVELOPMENT</Text>
             <Space size={3} />
-            <Flex direction="column" gap={2}>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {data.appdev.map((item, i) => (
                 <NavLink key={i} to={item.href}>{item.text}</NavLink>
               ))}
-            </Flex>
-          </Box>
+            </div>
+          </div>
 
           {/* RESOURCES */}
-          <Box style={{ display: "flex", flexDirection: "column" }}>
+          <div>
             <Text variant="bold">RESOURCES</Text>
             <Space size={3} />
-            <Flex direction="column" gap={2}>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {data.resources.map((item, i) => (
                 <NavLink key={i} to={item.href}>{item.text}</NavLink>
               ))}
-            </Flex>
-          </Box>
+            </div>
+          </div>
 
-        </Flex>
+        </div>
 
-        <Flex variant="center" paddingTop={4}>
+        {/* COPYRIGHT */}
+        <Space size={5} />
+        <Flex variant="center">
           <Text variant="small">
-            © Copyright 2014-2025 | Deligence Technologies Inc. | All rights reserved.
+            © Copyright 2014–2025 | Deligence Technologies Inc. | All rights reserved.
           </Text>
         </Flex>
 
@@ -336,4 +345,3 @@ export default function Footer() {
     </Box>
   )
 }
-
