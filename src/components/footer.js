@@ -271,11 +271,10 @@ export default function Footer() {
     <Box as="footer" paddingY={6}>
       <Container>
 
-        {/* FOUR COLUMN FOOTER */}
         <Flex responsive variant="start" gap={5}>
 
           {/* FOLLOW US */}
-          <Box>
+          <Box style={{ display: "flex", flexDirection: "column" }}>
             <Text variant="bold">FOLLOW US</Text>
             <Space size={3} />
 
@@ -293,7 +292,7 @@ export default function Footer() {
           </Box>
 
           {/* ARTIFICIAL INTELLIGENCE */}
-          <Box>
+          <Box style={{ display: "flex", flexDirection: "column" }}>
             <Text variant="bold">ARTIFICIAL INTELLIGENCE</Text>
             <Space size={3} />
             <Flex direction="column" gap={2}>
@@ -304,7 +303,7 @@ export default function Footer() {
           </Box>
 
           {/* APP DEVELOPMENT */}
-          <Box>
+          <Box style={{ display: "flex", flexDirection: "column" }}>
             <Text variant="bold">APP DEVELOPMENT</Text>
             <Space size={3} />
             <Flex direction="column" gap={2}>
@@ -315,7 +314,7 @@ export default function Footer() {
           </Box>
 
           {/* RESOURCES */}
-          <Box>
+          <Box style={{ display: "flex", flexDirection: "column" }}>
             <Text variant="bold">RESOURCES</Text>
             <Space size={3} />
             <Flex direction="column" gap={2}>
@@ -327,7 +326,6 @@ export default function Footer() {
 
         </Flex>
 
-        {/* COPYRIGHT */}
         <Flex variant="center" paddingTop={4}>
           <Text variant="small">
             © Copyright 2014-2025 | Deligence Technologies Inc. | All rights reserved.
