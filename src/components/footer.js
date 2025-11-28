@@ -1,4 +1,4 @@
-import * as React from "react"
+/*import * as React from "react"
 import {
   Twitter,
   Twitch,
@@ -185,6 +185,176 @@ export default function Footer(props) {
         </Flex>
       </Container>
       <Space size={3} />
+    </Box>
+  )
+}
+*/
+import * as React from "react"
+import {
+  Twitter,
+  Twitch,
+  Instagram,
+  Facebook,
+  Youtube,
+  GitHub,
+} from "react-feather"
+import {
+  Container,
+  Flex,
+  FlexList,
+  Box,
+  Space,
+  NavLink,
+  Text,
+  IconLink,
+  VisuallyHidden,
+} from "./ui"
+import BrandLogo from "./brand-logo"
+
+const socialMedia = {
+  TWITTER: { url: "https://twitter.com", name: "Twitter", icon: <Twitter /> },
+  INSTAGRAM: { url: "https://instagram.com", name: "Instagram", icon: <Instagram /> },
+  FACEBOOK: { url: "https://facebook.com", name: "Facebook", icon: <Facebook /> },
+  YOUTUBE: { url: "https://youtube.com", name: "YouTube", icon: <Youtube /> },
+  GITHUB: { url: "https://github.com", name: "GitHub", icon: <GitHub /> },
+  TWITCH: { url: "https://twitch.tv", name: "Twitch", icon: <Twitch /> },
+}
+
+const getSocialURL = ({ service, username }) => {
+  const domain = socialMedia[service]?.url
+  if (!domain) return false
+  return `${domain}/${username}`
+}
+
+const getSocialIcon = ({ service }) => socialMedia[service]?.icon
+const getSocialName = ({ service }) => socialMedia[service]?.name
+
+// NEW DATA FOR 4-COLUMN FOOTER
+const data = {
+  follow: [
+    { service: "GITHUB", username: "gatsbyjs" },
+    { service: "INSTAGRAM", username: "gatsbyjs" },
+    { service: "TWITTER", username: "gatsbyjs" },
+    { service: "YOUTUBE", username: "gatsbyjs" },
+    { service: "FACEBOOK", username: "gatsbyjs" },
+    { service: "TWITCH", username: "gatsbyjs" },
+  ],
+
+  artificial: [
+    { text: "AI Services", href: "/ai-services" },
+    { text: "LangChain Services", href: "/langchain" },
+    { text: "Chatgpt Integration Services", href: "/chatgpt-integration" },
+    { text: "AI Chatbot Development", href: "/chatbot-development" },
+  ],
+
+  appdev: [
+    { text: "Mobile Apps", href: "/mobile-apps" },
+    { text: "Web Apps", href: "/web-apps" },
+    { text: "IT Outsourcing", href: "/it-outsourcing" },
+  ],
+
+  resources: [
+    { text: "Contact Us", href: "/contact" },
+    { text: "About Us", href: "/about" },
+    { text: "Success Stories", href: "/success-stories" },
+    { text: "Partnerships", href: "/partnerships" },
+    { text: "Client Reviews", href: "/client-reviews" },
+  ],
+
+  copyright: "© 2022 Gatsby Inc. All rights reserved",
+}
+
+export default function Footer() {
+  return (
+    <Box as="footer" paddingY={6}>
+      <Container>
+
+        {/* TOP — LOGO CENTERED */}
+        <Flex variant="center">
+          <BrandLogo />
+        </Flex>
+
+        <Space size={6} />
+
+        {/* FOUR COLUMN FOOTER */}
+        <Flex responsive variant="start">
+
+          {/* FOLLOW US */}
+          <Box>
+            <Text variant="bold">FOLLOW US</Text>
+            <Space size={3} />
+            <FlexList variant="start" gap={3}>
+              {data.follow.map((link, i) => {
+                const url = getSocialURL(link)
+                return (
+                  url && (
+                    <li key={i}>
+                      <IconLink to={url}>
+                        <VisuallyHidden>{getSocialName(link)}</VisuallyHidden>
+                        {getSocialIcon(link)}
+                      </IconLink>
+                    </li>
+                  )
+                )
+              })}
+            </FlexList>
+          </Box>
+
+          <Space />
+
+          {/* ARTIFICIAL INTELLIGENCE */}
+          <Box>
+            <Text variant="bold">ARTIFICIAL INTELLIGENCE</Text>
+            <Space size={3} />
+            <FlexList variant="start">
+              {data.artificial.map((item, i) => (
+                <li key={i}>
+                  <NavLink to={item.href}>{item.text}</NavLink>
+                </li>
+              ))}
+            </FlexList>
+          </Box>
+
+          <Space />
+
+          {/* APP DEVELOPMENT */}
+          <Box>
+            <Text variant="bold">APP DEVELOPMENT</Text>
+            <Space size={3} />
+            <FlexList variant="start">
+              {data.appdev.map((item, i) => (
+                <li key={i}>
+                  <NavLink to={item.href}>{item.text}</NavLink>
+                </li>
+              ))}
+            </FlexList>
+          </Box>
+
+          <Space />
+
+          {/* RESOURCES */}
+          <Box>
+            <Text variant="bold">RESOURCES</Text>
+            <Space size={3} />
+            <FlexList variant="start">
+              {data.resources.map((item, i) => (
+                <li key={i}>
+                  <NavLink to={item.href}>{item.text}</NavLink>
+                </li>
+              ))}
+            </FlexList>
+          </Box>
+
+        </Flex>
+
+        <Space size={6} />
+
+        {/* COPYRIGHT */}
+        <Flex variant="center">
+          <Text variant="small">{data.copyright}</Text>
+        </Flex>
+
+      </Container>
     </Box>
   )
 }
