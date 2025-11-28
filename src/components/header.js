@@ -117,9 +117,30 @@ export default function Header() {
             <FlexList gap={4}>
               {navItems &&
                 navItems.map((navItem) => (
-                  <li key={navItem.id}>
-                    <NavLink to={navItem.href}>{navItem.text}</NavLink>
-                  </li>
+             //     <li key={navItem.id}>
+             //       <NavLink to={navItem.href}>{navItem.text}</NavLink>
+            //   </li>
+            <li key={navItem.id} className="relative group">
+  <NavLink to={navItem.href}>
+    {navItem.text}
+  </NavLink>
+
+  {/* ▼ DROPDOWN MENU */}
+  {navItem.children && (
+    <ul className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-md py-2 z-50 min-w-[180px]">
+      {navItem.children.map((child, index) => (
+        <li key={index}>
+          <NavLink
+            to={child.href}
+            className="block px-4 py-2 hover:bg-gray-100"
+          >
+            {child.text}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  )}
+</li>
                 ))}
             </FlexList>
           </nav>
@@ -167,11 +188,34 @@ export default function Header() {
           <nav>
             <FlexList responsive variant="stretch">
               {navItems?.map((navItem) => (
-                <li key={navItem.id}>
-                  <NavLink to={navItem.href} className={mobileNavLink}>
-                    {navItem.text}
-                  </NavLink>
-                </li>
+              //  <li key={navItem.id}>
+              //   <NavLink to={navItem.href} className={mobileNavLink}>
+              //     {navItem.text}
+              //    </NavLink>
+              //  </li>
+              <li key={navItem.id}>
+  <div
+    className={`${mobileNavLink} flex justify-between items-center`}
+    onClick={() => setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)}
+  >
+    {navItem.text}
+    {navItem.children && <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>}
+  </div>
+
+  {/* MOBILE SUBMENU */}
+  {navItem.children && openDropdown === navItem.id && (
+    <ul className="ml-4 mt-1">
+      {navItem.children.map((child, index) => (
+        <li key={index}>
+          <NavLink to={child.href} className={mobileNavLink}>
+            {child.text}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  )}
+</li>
+
               ))}
             </FlexList>
           </nav>
