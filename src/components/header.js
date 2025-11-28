@@ -244,6 +244,10 @@ import {
   desktopHeaderNavWrapper,
   mobileHeaderNavWrapper,
   mobileNavSVGColorWrapper,
+  dropdownWrapper,
+  dropdownMenu,
+  dropdownItem,
+  showOnHover,
 } from "./header.css"
 import BrandLogo from "./brand-logo"
 
@@ -258,8 +262,8 @@ const data = {
         { href: "/ai-agent-development", text: "AI Agent Development" },
         { href: "/ai-automation-services", text: "AI Automation Services" },
         { href: "/ai-integration-services", text: "AI Integration Services" },
-        { href: "/ai-services/ai-chatbot-development-services", text: "AI Chatbot Development" },
-        { href: "/ai-services/chatgpt-integration", text: "Chatbot Integration" },
+        { href: "/ai-chatbot-development-services", text: "AI Chatbot Development" },
+        { href: "/chatgpt-integration-services", text: "Chatbot Integration" },
       ],
     },
     {
@@ -268,8 +272,8 @@ const data = {
       href: "#!",
       text: "Services",
       children: [
-        { href: "/web-development", text: "Web Development" },
-        { href: "/mobile-app", text: "Mobile App" },
+        { href: "/web-apps", text: "Web Development" },
+        { href: "/mobile-apps", text: "Mobile App" },
       ],
     },
     {
@@ -279,7 +283,9 @@ const data = {
       text: "Industries",
       children: [
         { href: "/healthcare", text: "Healthcare" },
-        { href: "/finance", text: "Finance" },
+        { href: "/ai-agent-for-insurance", text: "Insurance" },
+        { href: "/edutech", text: "Edutech" },
+        { href: "/ai-agent-for-real-estate", text: "Real Estate" },
       ],
     },
     {
@@ -294,8 +300,12 @@ const data = {
       href: "#!",
       text: "Technologies",
       children: [
-        { href: "/langchain", text: "LangChain" },
-        { href: "/flutter", text: "Flutter" },
+        { href: "/langchain-services", text: "LangChain" },
+        { href: "/salesforce", text: "Salesforce" },  
+        { href: "/mernstack-development", text: "Mernstack" },
+        { href: "/meteorjs-development", text: "Meteor JS" },
+        { href: "/flutter-services", text: "Flutter" },
+        { href: "/zoho-services", text: "Zoho" },
       ],
     },
     {
@@ -342,24 +352,22 @@ export default function Header() {
           <nav>
             <FlexList gap={4}>
               {navItems.map((navItem) => (
-                <li key={navItem.id} className="relative group">
-                  <NavLink to={navItem.href}>{navItem.text}</NavLink>
+                
+<li key={navItem.id} className={dropdownWrapper}>
+  <NavLink to={navItem.href}>{navItem.text}</NavLink>
 
-                  {navItem.children && (
-                    <ul className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-md py-2 z-50 min-w-[180px]">
-                      {navItem.children.map((child, index) => (
-                        <li key={index}>
-                          <NavLink
-                            to={child.href}
-                            className="block px-4 py-2 hover:bg-gray-100"
-                          >
-                            {child.text}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
+  {navItem.children && (
+    <ul className={`${dropdownMenu} ${showOnHover}`}>
+      {navItem.children.map((child, index) => (
+        <li key={index}>
+          <NavLink to={child.href} className={dropdownItem}>
+            {child.text}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  )}
+</li>
               ))}
             </FlexList>
           </nav>
@@ -409,31 +417,29 @@ export default function Header() {
             <FlexList responsive variant="stretch">
               {navItems.map((navItem) => (
                 <li key={navItem.id}>
-                  <div
-                    className={`${mobileNavLink} flex justify-between items-center`}
-                    onClick={() =>
-                      setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)
-                    }
-                  >
-                    {navItem.text}
-                    {navItem.children && (
-                      <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>
-                    )}
-                  </div>
+  <div
+    className={`${mobileNavLink} flex justify-between items-center`}
+    onClick={() =>
+      setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)
+    }
+  >
+    {navItem.text}
+    {navItem.children && <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>}
+  </div>
 
-                  {/* MOBILE DROPDOWN */}
-                  {navItem.children && openDropdown === navItem.id && (
-                    <ul className="ml-4 mt-1">
-                      {navItem.children.map((child, index) => (
-                        <li key={index}>
-                          <NavLink to={child.href} className={mobileNavLink}>
-                            {child.text}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
+  {navItem.children && openDropdown === navItem.id && (
+    <ul style={{ paddingLeft: "16px", marginTop: "8px" }}>
+      {navItem.children.map((child, index) => (
+        <li key={index}>
+          <NavLink to={child.href} className={mobileNavLink}>
+            {child.text}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  )}
+</li>
+
               ))}
             </FlexList>
           </nav>

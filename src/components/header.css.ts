@@ -63,3 +63,46 @@ export const mobileNavLink = style({
   paddingLeft: theme.space[4],
   paddingRight: theme.space[4],
 })
+
+
+// Dropdown wrapper
+export const dropdownWrapper = style({
+  position: "relative",
+});
+
+// Desktop dropdown menu
+export const dropdownMenu = style({
+  position: "absolute",
+  top: "100%",
+  left: "0",
+  background: "#fff",
+  padding: "8px 0",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+  borderRadius: "6px",
+  minWidth: "200px",
+  zIndex: 100,
+  display: "none",
+});
+
+// Show dropdown on hover (desktop only)
+export const showOnHover = style({
+  selectors: {
+    [`${dropdownWrapper}:hover &`]: {
+      display: "block",
+    },
+  },
+});
+
+// Dropdown item link
+export const dropdownItem = style({
+  display: "block",
+  padding: "8px 16px",
+  color: theme.colors.text,
+  fontSize: theme.fontSizes[2],
+  textDecoration: "none",
+  selectors: {
+    "&:hover": {
+      backgroundColor: "#f5f5f5",
+    },
+  },
+});
