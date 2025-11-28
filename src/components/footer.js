@@ -279,75 +279,63 @@ export default function Footer() {
             <Text variant="bold">FOLLOW US</Text>
             <Space size={3} />
 
-            <FlexList variant="start" gap={3}>
-              {data.follow.map((link, i) => {
-                const url = getSocialURL(link)
+            <Flex direction="row" gap={3}>
+              {data.follow.map((item, i) => {
+                const url = getSocialURL(item)
                 return (
-                  url && (
-                    <li key={i}>
-                      <IconLink to={url}>
-                        <VisuallyHidden>{getSocialName(link)}</VisuallyHidden>
-                        {getSocialIcon(link)}
-                      </IconLink>
-                    </li>
-                  )
+                  <IconLink key={i} to={url}>
+                    <VisuallyHidden>{getSocialName(item)}</VisuallyHidden>
+                    {getSocialIcon(item)}
+                  </IconLink>
                 )
               })}
-            </FlexList>
+            </Flex>
           </Box>
 
           {/* ARTIFICIAL INTELLIGENCE */}
           <Box>
             <Text variant="bold">ARTIFICIAL INTELLIGENCE</Text>
             <Space size={3} />
-
-            <FlexList variant="start" direction="vertical" gap={2}>
+            <Flex direction="column" gap={2}>
               {data.artificial.map((item, i) => (
-                <li key={i}>
-                  <NavLink to={item.href}>{item.text}</NavLink>
-                </li>
+                <NavLink key={i} to={item.href}>{item.text}</NavLink>
               ))}
-            </FlexList>
+            </Flex>
           </Box>
 
           {/* APP DEVELOPMENT */}
           <Box>
             <Text variant="bold">APP DEVELOPMENT</Text>
             <Space size={3} />
-
-            <FlexList variant="start" direction="vertical" gap={2}>
+            <Flex direction="column" gap={2}>
               {data.appdev.map((item, i) => (
-                <li key={i}>
-                  <NavLink to={item.href}>{item.text}</NavLink>
-                </li>
+                <NavLink key={i} to={item.href}>{item.text}</NavLink>
               ))}
-            </FlexList>
+            </Flex>
           </Box>
 
           {/* RESOURCES */}
           <Box>
             <Text variant="bold">RESOURCES</Text>
             <Space size={3} />
-
-            <FlexList variant="start" direction="vertical" gap={2}>
+            <Flex direction="column" gap={2}>
               {data.resources.map((item, i) => (
-                <li key={i}>
-                  <NavLink to={item.href}>{item.text}</NavLink>
-                </li>
+                <NavLink key={i} to={item.href}>{item.text}</NavLink>
               ))}
-            </FlexList>
+            </Flex>
           </Box>
 
         </Flex>
 
-        <Space size={6} />
-
         {/* COPYRIGHT */}
-        <Flex variant="center">
-          <Text variant="small">{data.copyright}</Text>
+        <Flex variant="center" paddingTop={4}>
+          <Text variant="small">
+            © Copyright 2014-2025 | Deligence Technologies Inc. | All rights reserved.
+          </Text>
         </Flex>
 
       </Container>
     </Box>
   )
 }
+
