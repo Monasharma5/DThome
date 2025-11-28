@@ -1,4 +1,4 @@
-import * as React from "react"
+/*import * as React from "react"
 import { Menu, X } from "react-feather"
 import {
   Container,
@@ -87,7 +87,7 @@ const data = {
     },
   ],
   cta: {
-    href: "/contact",
+    href: "/contact-us",
     text: "Contact",
   },
 }
@@ -125,7 +125,7 @@ export default function Header() {
     {navItem.text}
   </NavLink>
 
-  {/* ▼ DROPDOWN MENU */}
+  //{ ▼ DROPDOWN MENU }
   {navItem.children && (
     <ul className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-md py-2 z-50 min-w-[180px]">
       {navItem.children.map((child, index) => (
@@ -202,7 +202,7 @@ export default function Header() {
     {navItem.children && <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>}
   </div>
 
-  {/* MOBILE SUBMENU */}
+ // { MOBILE SUBMENU }
   {navItem.children && openDropdown === navItem.id && (
     <ul className="ml-4 mt-1">
       {navItem.children.map((child, index) => (
@@ -216,6 +216,224 @@ export default function Header() {
   )}
 </li>
 
+              ))}
+            </FlexList>
+          </nav>
+        </div>
+      )}
+    </header>
+  )
+}
+*/
+import * as React from "react"
+import { Menu, X } from "react-feather"
+import {
+  Container,
+  Flex,
+  FlexList,
+  Space,
+  NavLink,
+  Button,
+  InteractiveIcon,
+  Nudge,
+  VisuallyHidden,
+} from "./ui"
+import {
+  mobileNavOverlay,
+  mobileNavLink,
+  desktopHeaderNavWrapper,
+  mobileHeaderNavWrapper,
+  mobileNavSVGColorWrapper,
+} from "./header.css"
+import BrandLogo from "./brand-logo"
+
+const data = {
+  navItems: [
+    {
+      id: 0,
+      navItemType: "Link",
+      href: "/ai-services",
+      text: "AI Services",
+      children: [
+        { href: "/ai-agent-development", text: "AI Agent Development" },
+        { href: "/ai-automation-services", text: "AI Automation Services" },
+        { href: "/ai-integration-services", text: "AI Integration Services" },
+        { href: "/ai-services/ai-chatbot-development-services", text: "AI Chatbot Development" },
+        { href: "/ai-services/chatgpt-integration", text: "Chatbot Integration" },
+      ],
+    },
+    {
+      id: 1,
+      navItemType: "Link",
+      href: "#!",
+      text: "Services",
+      children: [
+        { href: "/web-development", text: "Web Development" },
+        { href: "/mobile-app", text: "Mobile App" },
+      ],
+    },
+    {
+      id: 2,
+      navItemType: "Link",
+      href: "#!",
+      text: "Industries",
+      children: [
+        { href: "/healthcare", text: "Healthcare" },
+        { href: "/finance", text: "Finance" },
+      ],
+    },
+    {
+      id: 3,
+      navItemType: "Link",
+      href: "/portfolio",
+      text: "Portfolio",
+    },
+    {
+      id: 4,
+      navItemType: "Link",
+      href: "#!",
+      text: "Technologies",
+      children: [
+        { href: "/langchain", text: "LangChain" },
+        { href: "/flutter", text: "Flutter" },
+      ],
+    },
+    {
+      id: 5,
+      navItemType: "Link",
+      href: "/contact-us",
+      text: "Contact Us",
+    },
+    {
+      id: 6,
+      navItemType: "Link",
+      href: "/about-us",
+      text: "About Us",
+    },
+  ],
+  cta: {
+    href: "/contact-us",
+    text: "Contact",
+  },
+}
+
+export default function Header() {
+  const { navItems, cta } = data
+  const [isOpen, setOpen] = React.useState(false)
+
+  // NEW: state for mobile dropdown
+  const [openDropdown, setOpenDropdown] = React.useState(null)
+
+  React.useEffect(() => {
+    document.body.style.overflowY = isOpen ? "hidden" : "visible"
+  }, [isOpen])
+
+  return (
+    <header>
+      {/* DESKTOP NAV */}
+      <Container className={desktopHeaderNavWrapper}>
+        <Space size={2} />
+        <Flex variant="spaceBetween">
+          <NavLink to="/">
+            <VisuallyHidden>Home</VisuallyHidden>
+            <BrandLogo />
+          </NavLink>
+
+          <nav>
+            <FlexList gap={4}>
+              {navItems.map((navItem) => (
+                <li key={navItem.id} className="relative group">
+                  <NavLink to={navItem.href}>{navItem.text}</NavLink>
+
+                  {navItem.children && (
+                    <ul className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-lg rounded-md py-2 z-50 min-w-[180px]">
+                      {navItem.children.map((child, index) => (
+                        <li key={index}>
+                          <NavLink
+                            to={child.href}
+                            className="block px-4 py-2 hover:bg-gray-100"
+                          >
+                            {child.text}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </FlexList>
+          </nav>
+
+          <div>{cta && <Button to={cta.href}>{cta.text}</Button>}</div>
+        </Flex>
+      </Container>
+
+      {/* MOBILE NAV HEADER */}
+      <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
+        <Space size={2} />
+        <Flex variant="spaceBetween">
+          <span className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}>
+            <NavLink to="/">
+              <VisuallyHidden>Home</VisuallyHidden>
+              <BrandLogo />
+            </NavLink>
+          </span>
+
+          <Flex>
+            <Space />
+            {cta && (
+              <Button to={cta.href} variant={isOpen ? "reversed" : "primary"}>
+                {cta.text}
+              </Button>
+            )}
+            <Nudge right={3}>
+              <InteractiveIcon
+                title="Toggle menu"
+                onClick={() => {
+                  setOpen(!isOpen)
+                  setOpenDropdown(null) // reset dropdown when menu closes
+                }}
+                className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}
+              >
+                {isOpen ? <X /> : <Menu />}
+              </InteractiveIcon>
+            </Nudge>
+          </Flex>
+        </Flex>
+      </Container>
+
+      {/* MOBILE OVERLAY MENU */}
+      {isOpen && (
+        <div className={mobileNavOverlay}>
+          <nav>
+            <FlexList responsive variant="stretch">
+              {navItems.map((navItem) => (
+                <li key={navItem.id}>
+                  <div
+                    className={`${mobileNavLink} flex justify-between items-center`}
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)
+                    }
+                  >
+                    {navItem.text}
+                    {navItem.children && (
+                      <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>
+                    )}
+                  </div>
+
+                  {/* MOBILE DROPDOWN */}
+                  {navItem.children && openDropdown === navItem.id && (
+                    <ul className="ml-4 mt-1">
+                      {navItem.children.map((child, index) => (
+                        <li key={index}>
+                          <NavLink to={child.href} className={mobileNavLink}>
+                            {child.text}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
               ))}
             </FlexList>
           </nav>
