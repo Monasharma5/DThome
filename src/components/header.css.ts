@@ -98,12 +98,6 @@ export const showOnHover = style({
     [`${dropdownWrapper}:hover &`]: {
       display: "block",
     },
-    "& li": {
-    listStyle: "none",
-  },
-  "& a": {
-    color: "white !important",
-  }
   },
 });
 
