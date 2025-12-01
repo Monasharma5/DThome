@@ -68,6 +68,7 @@ export const mobileNavLink = style({
 // Dropdown wrapper
 export const dropdownWrapper = style({
   position: "relative",
+  listStyle: "none",
 });
 
 // Desktop dropdown menu
@@ -85,11 +86,6 @@ export const dropdownMenu = style({
   listStyle: "none",
   margin: 0,
   paddingLeft: 0,
-   selectors: {
-    "& a": {
-      color: "white !important",
-    }
-  }
 });
 
 // Show dropdown on hover (desktop only)
@@ -105,13 +101,12 @@ export const showOnHover = style({
 export const dropdownItem = style({
   display: "block",
   padding: "8px 16px",
-  color: "white !important",
+  color: "#fff",
   fontSize: theme.fontSizes[2],
   textDecoration: "none",
   selectors: {
     "&:hover": {
       backgroundColor: "#f5f5f5",
-      color: "#000 !important",
     },
   },
 });
