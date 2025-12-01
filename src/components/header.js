@@ -238,6 +238,7 @@ import {
   Nudge,
   VisuallyHidden,
 } from "./ui"
+
 import {
   mobileNavOverlay,
   mobileNavLink,
@@ -248,7 +249,9 @@ import {
   dropdownMenu,
   dropdownItem,
   showOnHover,
+  desktopHeaderWrapper,  // ✅ FIXED
 } from "./header.css"
+
 import BrandLogo from "./brand-logo"
 
 const data = {
@@ -330,8 +333,6 @@ const data = {
 export default function Header() {
   const { navItems, cta } = data
   const [isOpen, setOpen] = React.useState(false)
-
-  // NEW: state for mobile dropdown
   const [openDropdown, setOpenDropdown] = React.useState(null)
 
   React.useEffect(() => {
@@ -347,48 +348,51 @@ export default function Header() {
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
             <img 
-  src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
-  alt="Deligence Logo"
-  style={{ height: "50px", width: "auto" }}
-/>
+              src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
+              alt="Deligence Logo"
+              style={{ height: "50px", width: "auto" }}
+            />
           </NavLink>
 
           <nav>
             <FlexList gap={4}>
               {navItems.map((navItem) => (
-                
-<li key={navItem.id} className={dropdownWrapper}>
-  <NavLink to={navItem.href} className={desktopNavLink}>
-  {navItem.text}
-</NavLink>
+                <li key={navItem.id} className={dropdownWrapper}>
+                  <NavLink to={navItem.href}>  {/* ❗ desktopNavLink removed */}
+                    {navItem.text}
+                  </NavLink>
 
-  {navItem.children && (
-    <ul className={`${dropdownMenu} ${showOnHover}`}>
-      {navItem.children.map((child, index) => (
-        <li key={index}>
-          <NavLink to={child.href} className={dropdownItem}>
-            {child.text}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
-  )}
-</li>
+                  {/* ▼ DROPDOWN MENU */}
+                  {navItem.children && (
+                    <ul className={`${dropdownMenu} ${showOnHover}`}>
+                      {navItem.children.map((child, index) => (
+                        <li key={index}>
+                          <NavLink to={child.href} className={dropdownItem}>
+                            {child.text}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
               ))}
             </FlexList>
           </nav>
 
-          <div>{cta && <Button
-  to={cta.href}
-  style={{
-    backgroundColor: "#ffa737",
-    borderColor: "#ffa737",
-    color: "#fff",
-  }}
->
-  {cta.text}
-</Button>
-}</div>
+          <div>
+            {cta && (
+              <Button
+                to={cta.href}
+                style={{
+                  backgroundColor: "#ffa737",
+                  borderColor: "#ffa737",
+                  color: "#fff",
+                }}
+              >
+                {cta.text}
+              </Button>
+            )}
+          </div>
         </Flex>
       </Container>
 
@@ -415,10 +419,9 @@ export default function Header() {
                 title="Toggle menu"
                 onClick={() => {
                   setOpen(!isOpen)
-                  setOpenDropdown(null) // reset dropdown when menu closes
+                  setOpenDropdown(null)
                 }}
-                className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}
-              >
+                className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}>
                 {isOpen ? <X /> : <Menu />}
               </InteractiveIcon>
             </Nudge>
@@ -433,29 +436,30 @@ export default function Header() {
             <FlexList responsive variant="stretch">
               {navItems.map((navItem) => (
                 <li key={navItem.id}>
-  <div
-    className={`${mobileNavLink} flex justify-between items-center`}
-    onClick={() =>
-      setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)
-    }
-  >
-    {navItem.text}
-    {navItem.children && <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>}
-  </div>
+                  <div
+                    className={`${mobileNavLink} flex justify-between items-center`}
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)
+                    }
+                  >
+                    {navItem.text}
+                    {navItem.children && (
+                      <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>
+                    )}
+                  </div>
 
-  {navItem.children && openDropdown === navItem.id && (
-    <ul style={{ paddingLeft: "16px", marginTop: "8px" }}>
-      {navItem.children.map((child, index) => (
-        <li key={index}>
-          <NavLink to={child.href} className={mobileNavLink}>
-            {child.text}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
-  )}
-</li>
-
+                  {navItem.children && openDropdown === navItem.id && (
+                    <ul style={{ paddingLeft: "16px", marginTop: "8px" }}>
+                      {navItem.children.map((child, index) => (
+                        <li key={index}>
+                          <NavLink to={child.href} className={mobileNavLink}>
+                            {child.text}
+                          </NavLink>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
               ))}
             </FlexList>
           </nav>
