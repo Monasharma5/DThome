@@ -2,6 +2,25 @@ import { style, styleVariants } from "@vanilla-extract/css"
 import { theme } from "../theme.css"
 import { media } from "./ui.css"
 
+// DESKTOP HEADER WRAPPER (background + text color)
+export const desktopHeaderWrapper = style({
+  backgroundColor: "#0C2340",
+  paddingTop: theme.space[4],
+  paddingBottom: theme.space[4],
+  color: "white",
+})
+
+// Make ALL nav links white (valid)
+export const desktopNavLink = style({
+  color: "white",
+  textDecoration: "none",
+  selectors: {
+    "&:hover": {
+      opacity: 0.8,
+    },
+  },
+})
+
 export const desktopHeaderNavWrapper = style({
   position: "relative",
   zIndex: 1,
@@ -28,9 +47,7 @@ const mobileHeaderNavWrapperBase = style({
 export const mobileHeaderNavWrapper = styleVariants({
   open: [
     mobileHeaderNavWrapperBase,
-    {
-      background: theme.colors.primary,
-    },
+    { background: theme.colors.primary },
   ],
   closed: [mobileHeaderNavWrapperBase],
 })
@@ -64,18 +81,17 @@ export const mobileNavLink = style({
   paddingRight: theme.space[4],
 })
 
-
 // Dropdown wrapper
 export const dropdownWrapper = style({
   position: "relative",
   listStyle: "none",
-});
+})
 
-// Desktop dropdown menu
+// Dropdown menu
 export const dropdownMenu = style({
   position: "absolute",
   top: "100%",
-  left: "0",
+  left: 0,
   background: "#4e88c7",
   padding: "8px 0",
   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
@@ -86,18 +102,18 @@ export const dropdownMenu = style({
   listStyle: "none",
   margin: 0,
   paddingLeft: 0,
-});
+})
 
-// Show dropdown on hover (desktop only)
+// Show dropdown on hover
 export const showOnHover = style({
   selectors: {
     [`${dropdownWrapper}:hover &`]: {
       display: "block",
     },
   },
-});
+})
 
-// Dropdown item link
+// Dropdown item
 export const dropdownItem = style({
   display: "block",
   padding: "8px 16px",
@@ -107,19 +123,7 @@ export const dropdownItem = style({
   selectors: {
     "&:hover": {
       backgroundColor: "#f5f5f5",
-    },
-  },
-});
-
-export const desktopHeaderWrapper = style({
-  backgroundColor: "#0C2340", // your dark header background
-  paddingTop: theme.space[4],
-  paddingBottom: theme.space[4],
-  color: "white",
-
-  selectors: {
-    "& a": {
-      color: "white !important",
+      color: "#000",
     },
   },
 })

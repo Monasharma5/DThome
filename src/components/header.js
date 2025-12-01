@@ -358,7 +358,9 @@ export default function Header() {
               {navItems.map((navItem) => (
                 
 <li key={navItem.id} className={dropdownWrapper}>
-  <NavLink to={navItem.href}>{navItem.text}</NavLink>
+  <NavLink to={navItem.href} className={desktopNavLink}>
+  {navItem.text}
+</NavLink>
 
   {navItem.children && (
     <ul className={`${dropdownMenu} ${showOnHover}`}>
