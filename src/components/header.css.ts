@@ -202,7 +202,7 @@ export const dropdownMenu = style({
   position: "absolute",
   top: "100%",
   left: 0,
-  background: "#4e88c7",
+  background: "#fff",
   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
   borderRadius: "6px",
   minWidth: "200px",
@@ -230,18 +230,22 @@ export const dropdownItem = style({
   textDecoration: "none",
 
   selectors: {
-    "&:hover": { backgroundColor: "#f5f5f5" },
+    "&:hover": { backgroundColor: "#ffa737" },
   },
 })
 
 // ================= DESKTOP HEADER =================
 
 export const desktopHeaderWrapper = style({
-  backgroundColor: "#0C2340",
+  backgroundColor: "#4e88c7",
   paddingTop: theme.space[4],
   paddingBottom: theme.space[4],
   color: "white",
+  width: "100%",        // ✅ must be a string
+  maxWidth: "100%",     // (recommended)
+  margin: "0",          // ensures no auto-centering
 })
+
 
 // Apply global style AFTER creating the class
 globalStyle(`${desktopHeaderWrapper} a`, {
