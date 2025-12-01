@@ -346,7 +346,11 @@ export default function Header() {
         <Flex variant="spaceBetween">
           <NavLink to="/">
             <VisuallyHidden>Home</VisuallyHidden>
-            <BrandLogo />
+            <img 
+  src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
+  alt="Deligence Logo"
+  style={{ height: "50px", width: "auto" }}
+/>
           </NavLink>
 
           <nav>

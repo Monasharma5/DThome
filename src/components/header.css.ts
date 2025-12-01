@@ -75,13 +75,16 @@ export const dropdownMenu = style({
   position: "absolute",
   top: "100%",
   left: "0",
-  background: "#fff",
+  background: "#4e88c7",
   padding: "8px 0",
   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
   borderRadius: "6px",
   minWidth: "200px",
   zIndex: 100,
   display: "none",
+  listStyle: "none",
+  margin: 0,
+  paddingLeft: 0,
 });
 
 // Show dropdown on hover (desktop only)

@@ -256,8 +256,8 @@ const data = {
   ],
 
   resources: [
-    { text: "Contact Us", href: "/contact" },
-    { text: "About Us", href: "/about" },
+    { text: "Contact Us", href: "/contact-us" },
+    { text: "About Us", href: "/about-us" },
     { text: "Success Stories", href: "/success-stories" },
     { text: "Partnerships", href: "/partnerships" },
     { text: "Client Reviews", href: "/client-reviews" },
@@ -268,7 +268,9 @@ const data = {
 
 export default function Footer() {
   return (
-    <Box as="footer" paddingY={6}>
+    <Box as="footer" paddingY={6}
+    style={{ background: "#4e88c7", color: "#fff" }}
+    >
       <Container>
 
         {/* ---- 4-column footer using CSS GRID ---- */}
@@ -288,7 +290,7 @@ export default function Footer() {
 
             <Flex gap={3}>
               {data.follow.map((item, i) => (
-                <IconLink key={i} to={getSocialURL(item)}>
+                <IconLink key={i} to={getSocialURL(item)} style={{ color: "#fff" }}>
                   {getSocialIcon(item)}
                 </IconLink>
               ))}
@@ -334,8 +336,8 @@ export default function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <Space size={5} />
-        <Flex variant="center">
+        <Space size={4} />
+        <Flex variant="center" style={{ marginbottom: "10px" }}>
           <Text variant="small">
             © Copyright 2014–2025 | Deligence Technologies Inc. | All rights reserved.
           </Text>
