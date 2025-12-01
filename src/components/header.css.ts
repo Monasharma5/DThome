@@ -85,6 +85,11 @@ export const dropdownMenu = style({
   listStyle: "none",
   margin: 0,
   paddingLeft: 0,
+   selectors: {
+    "& a": {
+      color: "white !important",
+    }
+  }
 });
 
 // Show dropdown on hover (desktop only)
@@ -93,6 +98,12 @@ export const showOnHover = style({
     [`${dropdownWrapper}:hover &`]: {
       display: "block",
     },
+    "& li": {
+    listStyle: "none",
+  },
+  "& a": {
+    color: "white !important",
+  }
   },
 });
 
@@ -100,12 +111,26 @@ export const showOnHover = style({
 export const dropdownItem = style({
   display: "block",
   padding: "8px 16px",
-  color: theme.colors.text,
+  color: "white !important",
   fontSize: theme.fontSizes[2],
   textDecoration: "none",
   selectors: {
     "&:hover": {
       backgroundColor: "#f5f5f5",
+      color: "#000 !important",
     },
   },
 });
+
+export const desktopHeaderWrapper = style({
+  backgroundColor: "#0C2340", // your dark header background
+  paddingTop: theme.space[4],
+  paddingBottom: theme.space[4],
+  color: "white",
+
+  selectors: {
+    "& a": {
+      color: "white !important",
+    },
+  },
+})

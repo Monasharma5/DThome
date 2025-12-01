@@ -341,7 +341,7 @@ export default function Header() {
   return (
     <header>
       {/* DESKTOP NAV */}
-      <Container className={desktopHeaderNavWrapper}>
+      <Container className={`${desktopHeaderNavWrapper} ${desktopHeaderWrapper}`}>
         <Space size={2} />
         <Flex variant="spaceBetween">
           <NavLink to="/">
@@ -376,7 +376,17 @@ export default function Header() {
             </FlexList>
           </nav>
 
-          <div>{cta && <Button to={cta.href}>{cta.text}</Button>}</div>
+          <div>{cta && <Button
+  to={cta.href}
+  style={{
+    backgroundColor: "#ffa737",
+    borderColor: "#ffa737",
+    color: "#fff",
+  }}
+>
+  {cta.text}
+</Button>
+}</div>
         </Flex>
       </Container>
 
