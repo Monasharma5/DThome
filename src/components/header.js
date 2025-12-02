@@ -250,6 +250,8 @@ import {
   dropdownItem,
   showOnHover,
   desktopHeaderWrapper,  // ✅ FIXED
+  desktopHeaderOuter,
+  desktopHeaderInner,
 } from "./header.css"
 
 import BrandLogo from "./brand-logo"
@@ -330,7 +332,7 @@ const data = {
   },
 }
 
-export default function Header() {
+export default function Header({ navItems, cta }) {
   const { navItems, cta } = data
   const [isOpen, setOpen] = React.useState(false)
   const [openDropdown, setOpenDropdown] = React.useState(null)
@@ -342,93 +344,60 @@ export default function Header() {
   return (
     <header>
       {/* DESKTOP NAV */}
-      <Container className={`${desktopHeaderNavWrapper} ${desktopHeaderWrapper}`}>
-        <Space size={2} />
-        <Flex variant="spaceBetween">
-          <NavLink to="/">
-            <VisuallyHidden>Home</VisuallyHidden>
-            <img 
-              src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
-              alt="Deligence Logo"
-              style={{ height: "50px", width: "auto" }}
-            />
-          </NavLink>
+      <div className={desktopHeaderOuter}>
+        <Container className={`${desktopHeaderNavWrapper} ${desktopHeaderInner}`}>
+          <Space size={2} />
 
-          <nav>
-            <FlexList gap={4}>
-              {navItems.map((navItem) => (
-                <li key={navItem.id} className={dropdownWrapper}>
-                  <NavLink to={navItem.href}>  {/* ❗ desktopNavLink removed */}
-                    {navItem.text}
-                  </NavLink>
+          <Flex variant="spaceBetween">
 
-                  {/* ▼ DROPDOWN MENU */}
-                  {navItem.children && (
-                    <ul className={`${dropdownMenu} ${showOnHover}`}>
-                      {navItem.children.map((child, index) => (
-                        <li key={index}>
-                          <NavLink to={child.href} className={dropdownItem}>
-                            {child.text}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </FlexList>
-          </nav>
-
-          <div>
-            {cta && (
-              <Button
-                to={cta.href}
-                style={{
-                  backgroundColor: "#ffa737",
-                  borderColor: "#ffa737",
-                  color: "#fff",
-                }}
-              >
-                {cta.text}
-              </Button>
-            )}
-          </div>
-        </Flex>
-      </Container>
-
-      {/* MOBILE NAV HEADER */}
-      <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
-        <Space size={2} />
-        <Flex variant="spaceBetween">
-          <span className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}>
+            {/* LOGO */}
             <NavLink to="/">
-              <VisuallyHidden>Home</VisuallyHidden>
-              <BrandLogo />
+              <img
+                src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
+                alt="Deligence Logo"
+                style={{ height: "50px", width: "auto" }}
+              />
             </NavLink>
-          </span>
 
-          <Flex>
-            <Space />
-            {cta && (
-              <Button to={cta.href} variant={isOpen ? "reversed" : "primary"}>
-                {cta.text}
-              </Button>
-            )}
-            <Nudge right={3}>
-              <InteractiveIcon
-                title="Toggle menu"
-                onClick={() => {
-                  setOpen(!isOpen)
-                  setOpenDropdown(null)
-                }}
-                className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}>
-                {isOpen ? <X /> : <Menu />}
-              </InteractiveIcon>
-            </Nudge>
+            {/* NAVIGATION */}
+            <nav>
+              <FlexList gap={4}>
+                {navItems.map((navItem) => (
+                  <li key={navItem.id} className={dropdownWrapper}>
+                    <NavLink to={navItem.href}>{navItem.text}</NavLink>
+
+                    {navItem.children && (
+                      <ul className={`${dropdownMenu} ${showOnHover}`}>
+                        {navItem.children.map((child, index) => (
+                          <li key={index}>
+                            <NavLink to={child.href} className={dropdownItem}>
+                              {child.text}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </FlexList>
+            </nav>
+
+            {/* CTA BUTTON */}
+            <Button
+              to={cta.href}
+              style={{
+                backgroundColor: "#ffa737",
+                borderColor: "#ffa737",
+                color: "white",
+              }}
+            >
+              {cta.text}
+            </Button>
+
           </Flex>
-        </Flex>
-      </Container>
-
+        </Container>
+      </div>
+      
       {/* MOBILE OVERLAY MENU */}
       {isOpen && (
         <div className={mobileNavOverlay}>

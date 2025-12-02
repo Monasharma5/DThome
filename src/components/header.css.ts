@@ -4,7 +4,7 @@ import { media } from "./ui.css"
 
 // DESKTOP HEADER WRAPPER (background + text color)
 export const desktopHeaderWrapper = style({
-  backgroundColor: "#0C2340",
+  backgroundColor: "#4e88c7",
   paddingTop: theme.space[4],
   paddingBottom: theme.space[4],
   color: "white",
@@ -132,7 +132,20 @@ import { style, styleVariants, globalStyle } from "@vanilla-extract/css"
 import { theme } from "../theme.css"
 import { media } from "./ui.css"
 
-// ================= MOBILE + DESKTOP WRAPPERS =================
+// ================= FULL WIDTH HEADER WRAPPERS =================
+
+export const desktopHeaderOuter = style({
+  width: "100%",
+  backgroundColor: "#4e88c7",
+});
+
+export const desktopHeaderInner = style({
+  paddingTop: theme.space[4],
+  paddingBottom: theme.space[4],
+  color: "white",
+});
+
+// ================= MOBILE + DESKTOP NAV WRAPPERS =================
 
 export const desktopHeaderNavWrapper = style({
   position: "relative",
@@ -195,20 +208,20 @@ export const mobileNavLink = style({
 
 export const dropdownWrapper = style({
   position: "relative",
-  listStyle: "none",
+  listStyle: "none", // removes dots
 })
 
 export const dropdownMenu = style({
   position: "absolute",
   top: "100%",
   left: 0,
-  background: "#fff",
-  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+  backgroundColor: "#4e88c7",
+  color: "white",
   borderRadius: "6px",
   minWidth: "200px",
   zIndex: 100,
   display: "none",
-  listStyle: "none",
+  listStyle: "none", // removes dots
   margin: 0,
   padding: "8px 0",
 })
@@ -225,29 +238,18 @@ export const showOnHover = style({
 export const dropdownItem = style({
   display: "block",
   padding: "8px 16px",
-  color: "#fff",
-  fontSize: theme.fontSizes[2],
+  color: "white",
   textDecoration: "none",
 
   selectors: {
-    "&:hover": { backgroundColor: "#ffa737" },
+    "&:hover": {
+      backgroundColor: "#ffa737",
+      color: "black",
+    },
   },
 })
 
-// ================= DESKTOP HEADER =================
-
-export const desktopHeaderWrapper = style({
-  backgroundColor: "#4e88c7",
-  paddingTop: theme.space[4],
-  paddingBottom: theme.space[4],
-  color: "white",
-  width: "100%",        // ✅ must be a string
-  maxWidth: "100%",     // (recommended)
-  margin: "0",          // ensures no auto-centering
-})
-
-
-// Apply global style AFTER creating the class
-globalStyle(`${desktopHeaderWrapper} a`, {
-  color: "white !important",
+// Remove underline for menu links globally
+globalStyle(`${dropdownItem} a`, {
+  textDecoration: "none",
 })
