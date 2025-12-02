@@ -397,7 +397,6 @@ export default function Header({ navItems, cta }) {
           </Flex>
         </Container>
       </div>
-      
       {/* MOBILE OVERLAY MENU */}
       {isOpen && (
         <div className={mobileNavOverlay}>
