@@ -225,7 +225,7 @@ export default function Header() {
   )
 }
 */
-import * as React from "react"
+import React from "react"
 import { Menu, X } from "react-feather"
 import {
   Container,
@@ -240,21 +240,18 @@ import {
 } from "./ui"
 
 import {
-  mobileNavOverlay,
-  mobileNavLink,
+  desktopHeaderOuter,
+  desktopHeaderInner,
   desktopHeaderNavWrapper,
   mobileHeaderNavWrapper,
   mobileNavSVGColorWrapper,
+  mobileNavOverlay,
+  mobileNavLink,
   dropdownWrapper,
   dropdownMenu,
   dropdownItem,
   showOnHover,
-  desktopHeaderWrapper,  // ✅ FIXED
-  desktopHeaderOuter,
-  desktopHeaderInner,
 } from "./header.css"
-
-import BrandLogo from "./brand-logo"
 
 const data = {
   navItems: [
@@ -264,11 +261,11 @@ const data = {
       href: "/ai-services",
       text: "AI Services",
       children: [
-        { href: "/ai-agent-development", text: "AI Agent Development" },
-        { href: "/ai-automation-services", text: "AI Automation Services" },
-        { href: "/ai-integration-services", text: "AI Integration Services" },
-        { href: "/ai-chatbot-development-services", text: "AI Chatbot Development" },
-        { href: "/chatgpt-integration-services", text: "Chatbot Integration" },
+        { id: "ai-1", href: "/ai-agent-development", text: "AI Agent Development" },
+        { id: "ai-2", href: "/ai-automation-services", text: "AI Automation Services" },
+        { id: "ai-3", href: "/ai-integration-services", text: "AI Integration Services" },
+        { id: "ai-4", href: "/ai-chatbot-development-services", text: "AI Chatbot Development" },
+        { id: "ai-5", href: "/chatgpt-integration-services", text: "Chatbot Integration" },
       ],
     },
     {
@@ -277,8 +274,8 @@ const data = {
       href: "#!",
       text: "Services",
       children: [
-        { href: "/web-apps", text: "Web Development" },
-        { href: "/mobile-apps", text: "Mobile App" },
+        { id: "srv-1", href: "/web-apps", text: "Web Development" },
+        { id: "srv-2", href: "/mobile-apps", text: "Mobile App" },
       ],
     },
     {
@@ -287,44 +284,29 @@ const data = {
       href: "#!",
       text: "Industries",
       children: [
-        { href: "/healthcare", text: "Healthcare" },
-        { href: "/ai-agent-for-insurance", text: "Insurance" },
-        { href: "/edutech", text: "Edutech" },
-        { href: "/ai-agent-for-real-estate", text: "Real Estate" },
+        { id: "ind-1", href: "/healthcare", text: "Healthcare" },
+        { id: "ind-2", href: "/ai-agent-for-insurance", text: "Insurance" },
+        { id: "ind-3", href: "/edutech", text: "Edutech" },
+        { id: "ind-4", href: "/ai-agent-for-real-estate", text: "Real Estate" },
       ],
     },
-    {
-      id: 3,
-      navItemType: "Link",
-      href: "/portfolio",
-      text: "Portfolio",
-    },
+    { id: 3, navItemType: "Link", href: "/portfolio", text: "Portfolio" },
     {
       id: 4,
       navItemType: "Link",
       href: "#!",
       text: "Technologies",
       children: [
-        { href: "/langchain-services", text: "LangChain" },
-        { href: "/salesforce", text: "Salesforce" },  
-        { href: "/mernstack-development", text: "Mernstack" },
-        { href: "/meteorjs-development", text: "Meteor JS" },
-        { href: "/flutter-services", text: "Flutter" },
-        { href: "/zoho-services", text: "Zoho" },
+        { id: "tech-1", href: "/langchain-services", text: "LangChain" },
+        { id: "tech-2", href: "/salesforce", text: "Salesforce" },
+        { id: "tech-3", href: "/mernstack-development", text: "Mernstack" },
+        { id: "tech-4", href: "/meteorjs-development", text: "Meteor JS" },
+        { id: "tech-5", href: "/flutter-services", text: "Flutter" },
+        { id: "tech-6", href: "/zoho-services", text: "Zoho" },
       ],
     },
-    {
-      id: 5,
-      navItemType: "Link",
-      href: "/contact-us",
-      text: "Contact Us",
-    },
-    {
-      id: 6,
-      navItemType: "Link",
-      href: "/about-us",
-      text: "About Us",
-    },
+    { id: 5, navItemType: "Link", href: "/contact-us", text: "Contact Us" },
+    { id: 6, navItemType: "Link", href: "/about-us", text: "About Us" },
   ],
   cta: {
     href: "/contact-us",
@@ -332,7 +314,7 @@ const data = {
   },
 }
 
-export default function Header({ navItems, cta }) {
+export default function Header() {
   const { navItems, cta } = data
   const [isOpen, setOpen] = React.useState(false)
   const [openDropdown, setOpenDropdown] = React.useState(null)
@@ -343,24 +325,24 @@ export default function Header({ navItems, cta }) {
 
   return (
     <header>
-      {/* DESKTOP NAV */}
+      {/* FULL WIDTH BACKGROUND (outer) */}
       <div className={desktopHeaderOuter}>
-        <Container className={`${desktopHeaderNavWrapper} ${desktopHeaderInner}`}>
+
+        {/* content kept centered by Container */}
+        <Container className={desktopHeaderInner}>
           <Space size={2} />
-
-          <Flex variant="spaceBetween">
-
-            {/* LOGO */}
+          <Flex variant="spaceBetween" align="center">
             <NavLink to="/">
+              <VisuallyHidden>Home</VisuallyHidden>
               <img
                 src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
                 alt="Deligence Logo"
-                style={{ height: "50px", width: "auto" }}
+                style={{ height: 50, width: "auto", display: "block" }}
               />
             </NavLink>
 
-            {/* NAVIGATION */}
-            <nav>
+            {/* Desktop navigation - hidden on small screens by desktopHeaderNavWrapper */}
+            <nav className={desktopHeaderNavWrapper} aria-label="Main navigation">
               <FlexList gap={4}>
                 {navItems.map((navItem) => (
                   <li key={navItem.id} className={dropdownWrapper}>
@@ -368,11 +350,13 @@ export default function Header({ navItems, cta }) {
 
                     {navItem.children && (
                       <ul className={`${dropdownMenu} ${showOnHover}`}>
-                        {navItem.children.map((child, index) => (
-                          <li key={index}>
-                            <NavLink to={child.href} className={dropdownItem}>
+                        {navItem.children.map((child) => (
+                          <li key={child.id}>
+                            {/* NOTE: If your NavLink component doesn't forward className,
+                                apply styles on a wrapper <a> or update NavLink to accept className */}
+                            <a href={child.href} className={dropdownItem}>
                               {child.text}
-                            </NavLink>
+                            </a>
                           </li>
                         ))}
                       </ul>
@@ -382,21 +366,66 @@ export default function Header({ navItems, cta }) {
               </FlexList>
             </nav>
 
-            {/* CTA BUTTON */}
-            <Button
-              to={cta.href}
-              style={{
-                backgroundColor: "#ffa737",
-                borderColor: "#ffa737",
-                color: "white",
-              }}
-            >
-              {cta.text}
-            </Button>
-
+            {/* CTA */}
+            <div>
+              {cta && (
+                <Button
+                  to={cta.href}
+                  style={{
+                    backgroundColor: "#ffa737",
+                    borderColor: "#ffa737",
+                    color: "white",
+                  }}
+                >
+                  {cta.text}
+                </Button>
+              )}
+            </div>
           </Flex>
         </Container>
       </div>
+
+      {/* MOBILE header (keeps your previous mobile code) */}
+      <Container className={mobileHeaderNavWrapper[isOpen ? "open" : "closed"]}>
+        <Space size={2} />
+        <Flex variant="spaceBetween">
+          <span className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}>
+            <NavLink to="/">
+              <VisuallyHidden>Home</VisuallyHidden>
+              {/* you may keep BrandLogo or image */}
+              <img
+                src="https://www.deligence.com/wp-content/uploads/2022/09/Deligence-logo-file-1-600x208-1.webp"
+                alt="Deligence Logo"
+                style={{ height: 40, width: "auto", display: "block" }}
+              />
+            </NavLink>
+          </span>
+
+          <Flex>
+            <Space />
+            <div>
+              {cta && (
+                <Button to={cta.href} variant={isOpen ? "reversed" : "primary"}>
+                  {cta.text}
+                </Button>
+              )}
+            </div>
+            <Nudge right={3}>
+              <InteractiveIcon
+                title="Toggle menu"
+                onClick={() => {
+                  setOpen(!isOpen)
+                  setOpenDropdown(null)
+                }}
+                className={mobileNavSVGColorWrapper[isOpen ? "reversed" : "primary"]}
+              >
+                {isOpen ? <X /> : <Menu />}
+              </InteractiveIcon>
+            </Nudge>
+          </Flex>
+        </Flex>
+      </Container>
+
       {/* MOBILE OVERLAY MENU */}
       {isOpen && (
         <div className={mobileNavOverlay}>
@@ -409,17 +438,18 @@ export default function Header({ navItems, cta }) {
                     onClick={() =>
                       setOpenDropdown(openDropdown === navItem.id ? null : navItem.id)
                     }
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={() => {}}
                   >
                     {navItem.text}
-                    {navItem.children && (
-                      <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>
-                    )}
+                    {navItem.children && <span>{openDropdown === navItem.id ? "▲" : "▼"}</span>}
                   </div>
 
                   {navItem.children && openDropdown === navItem.id && (
-                    <ul style={{ paddingLeft: "16px", marginTop: "8px" }}>
-                      {navItem.children.map((child, index) => (
-                        <li key={index}>
+                    <ul style={{ paddingLeft: 16, marginTop: 8 }}>
+                      {navItem.children.map((child) => (
+                        <li key={child.id}>
                           <NavLink to={child.href} className={mobileNavLink}>
                             {child.text}
                           </NavLink>

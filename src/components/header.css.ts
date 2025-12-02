@@ -132,33 +132,38 @@ import { style, styleVariants, globalStyle } from "@vanilla-extract/css"
 import { theme } from "../theme.css"
 import { media } from "./ui.css"
 
-// ================= FULL WIDTH HEADER WRAPPERS =================
-
+/**
+ * Full-width outer wrapper (background spans full viewport)
+ * Inner (desktopHeaderInner) keeps content padding & text color.
+ */
 export const desktopHeaderOuter = style({
-  width: "100%",
+  width: "100vw",
+  left: 0,
+  right: 0,
+  position: "relative",
   backgroundColor: "#4e88c7",
-});
+})
 
 export const desktopHeaderInner = style({
+  // Keep the content centered via your Container component.
   paddingTop: theme.space[4],
   paddingBottom: theme.space[4],
   color: "white",
-});
+})
 
-// ================= MOBILE + DESKTOP NAV WRAPPERS =================
-
+/* Desktop nav: keep display none on small screens, show on larger */
 export const desktopHeaderNavWrapper = style({
   position: "relative",
-  zIndex: 1,
+  zIndex: 2,
   display: "none",
   "@media": {
     [media.small]: {
       display: "block",
-      paddingTop: theme.space[4],
     },
   },
 })
 
+/* Mobile header base */
 const mobileHeaderNavWrapperBase = style({
   display: "block",
   position: "relative",
@@ -204,43 +209,43 @@ export const mobileNavLink = style({
   padding: `${theme.space[2]} ${theme.space[4]}`,
 })
 
-// ================= DROPDOWN =================
+/* ---------------- DROPDOWN ---------------- */
 
 export const dropdownWrapper = style({
   position: "relative",
-  listStyle: "none", // removes dots
+  listStyle: "none", // ensure wrapper has no list-style
 })
 
 export const dropdownMenu = style({
   position: "absolute",
   top: "100%",
   left: 0,
-  backgroundColor: "#4e88c7",
+  backgroundColor: "#4e88c7", // requested dropdown bg
   color: "white",
   borderRadius: "6px",
   minWidth: "200px",
   zIndex: 100,
   display: "none",
-  listStyle: "none", // removes dots
+  listStyle: "none", // remove bullets
   margin: 0,
   padding: "8px 0",
 })
 
-// SHOW ON HOVER (DESKTOP)
 export const showOnHover = style({
   selectors: {
+    // When the dropdownWrapper is hovered, show the dropdownMenu
     [`${dropdownWrapper}:hover &`]: {
       display: "block",
     },
   },
 })
 
+// links inside dropdown (apply color, padding, hover)
 export const dropdownItem = style({
   display: "block",
   padding: "8px 16px",
   color: "white",
   textDecoration: "none",
-
   selectors: {
     "&:hover": {
       backgroundColor: "#ffa737",
@@ -249,7 +254,8 @@ export const dropdownItem = style({
   },
 })
 
-// Remove underline for menu links globally
-globalStyle(`${dropdownItem} a`, {
+/* Make sure anchor tags inside the header inner area are white */
+globalStyle(`${desktopHeaderInner} a`, {
+  color: "white !important",
   textDecoration: "none",
 })
