@@ -2,255 +2,117 @@ import React from "react"
 import Layout from "../components/layout"
 import SEOHead from "../components/head"
 
-export default function ContactUsPage() {
+const ContactUsPage = () => {
   return (
     <Layout>
-      <div style={{ padding: "30px" }}>
-        {/* MAIN FLEX WRAPPER */}
-        <div
-          className="contact-section"
-          style={{ display: "flex", flexWrap: "wrap", gap: "30px" }}
-        >
-          {/* LEFT COLUMN */}
-          <div
-            className="contact-info"
-            style={{ flex: "1 1 55%", minWidth: "300px" }}
-          >
-            <ul
-              className="fusion-checklist fusion-checklist-1 fusion-checklist-default type-icons"
-              style={{ listStyle: "none", padding: 0 }}
+      <SEOHead title="Contact Us" description="Contact Deligence Technologies" />
+
+      <main className="page">
+        <section className="contact-page">
+          {/* LEFT SIDE — CONTACT INFO */}
+          <article className="contact-info">
+            <h3>Get In Touch</h3>
+            <p>
+              Need to contact us? Either fill out the form or use the contact
+              details below.
+            </p>
+
+            <p>
+              <strong>Deligence Technologies Inc.</strong>
+              <br />
+              1 King Street West<br />
+              Suite 4800 – 274<br />
+              Toronto, Ontario M5H 1A1, Canada
+            </p>
+
+            <p>
+              <strong>Phone:</strong>{" "}
+              <a href="tel:+12897727883">+1 (289) 772-7883</a>
+            </p>
+
+            <p>
+              <strong>Email:</strong>{" "}
+              <a href="mailto:sales@deligence.com">sales@deligence.com</a>
+            </p>
+
+            <p>
+              <strong>Microsoft Teams:</strong>{" "}
+              <a
+                href="https://teams.microsoft.com/l/chat/0/0?users="
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                sanjay.deligence
+              </a>
+            </p>
+          </article>
+
+          {/* RIGHT SIDE — CONTACT FORM */}
+          <article>
+            <form
+              className="form contact-form"
+              action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+              method="POST"
             >
-              <div
-                style={{
-                  backgroundColor: "#f5f5f5",
-                  borderRadius: "25px",
-                  padding: "15px 20px",
-                  marginTop: "-20px",
-                }}
-              >
-                {/* LOCATION */}
-                <li className="fusion-li-item">
-                  <span className="icon-wrapper circle-no">
-                    <i
-                      className="fusion-li-icon icon-seo-map-marker-alt-solid"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
+              {/* Required Salesforce Hidden Fields */}
+              <input type="hidden" name="oid" value="00D5g000005H9ev" />
+              <input
+                type="hidden"
+                name="retURL"
+                value="https://www.deligence.com/thank-you/"
+              />
 
-                  <div className="fusion-li-item-content">
-                    <h1
-                      style={{
-                        textAlign: "center",
-                        color: "#000",
-                        fontFamily: "Plus Jakarta Sans",
-                        fontWeight: 300,
-                        marginTop: "-2px",
-                      }}
-                    >
-                      Get in Touch
-                    </h1>
-
-                    <p
-                      style={{
-                        textAlign: "center",
-                        fontSize: "20px",
-                      }}
-                    >
-                      Need to get in touch with us? Either fill out the form
-                      with your inquiry or find the email you'd like the contact
-                      below.
-                    </p>
-
-                    <p>
-                      <img
-                        style={{ width: "40px", marginBottom: "2px" }}
-                        src="https://flagcdn.com/w40/ca.png"
-                        alt="Canada flag"
-                      />
-                    </p>
-
-                    <p>
-                      <strong>CANADA</strong>
-                    </p>
-
-                    <p style={{ color: "#202020" }}>
-                      <strong>Deligence Technologies Inc.</strong>
-                      <br />
-                      1 King Street West
-                      <br />
-                      Suite 4800 – 274 Toronto, Ontario M5H 1A1, Canada
-                    </p>
-                  </div>
-                </li>
-
-                {/* PHONE */}
-                <li className="fusion-li-item">
-                  <span className="icon-wrapper circle-no">
-                    <i
-                      className="fusion-li-icon icon-seo-phone-solid"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-
-                  <div className="fusion-li-item-content">
-                    <p>
-                      <a href="tel:+12897727883" style={{ color: "#000" }}>
-                        +1 (289) 772-7883
-                      </a>
-                    </p>
-                  </div>
-                </li>
-
-                {/* EMAIL */}
-                <li className="fusion-li-item">
-                  <span className="icon-wrapper circle-no">
-                    <i
-                      className="fusion-li-icon icon-seo-envelope-solid"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-
-                  <div className="fusion-li-item-content">
-                    <p>
-                      <a
-                        href="mailto:sales@deligence.com"
-                        style={{ color: "#5d5f64" }}
-                      >
-                        sales@deligence.com
-                      </a>
-                    </p>
-                  </div>
-                </li>
-
-                {/* CHAT */}
-                <li className="fusion-li-item">
-                  <span className="icon-wrapper circle-no">
-                    <i
-                      className="fusion-li-icon fa-rocketchat fab"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-
-                  <div className="fusion-li-item-content">
-                    <p>
-                      <a
-                        href="https://teams.microsoft.com/l/chat/0/0?users="
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#5d5f64" }}
-                      >
-                        sanjay.deligence
-                      </a>
-                    </p>
-                  </div>
-                </li>
-              </div>
-            </ul>
-          </div>
-
-          {/* RIGHT COLUMN: FORM */}
-          <div
-            className="contact-form"
-            style={{ flex: "1 1 35%", minWidth: "300px" }}
-          >
-            <div
-              style={{
-                backgroundColor: "#e8eaf0",
-                borderRadius: "25px",
-                padding: "15px",
-                borderColor: "#004ca3",
-                borderWidth: "2px",
-                borderStyle: "solid",
-              }}
-            >
-              <h1
-                style={{
-                  fontFamily: "Plus Jakarta Sans",
-                  fontWeight: 300,
-                  fontSize: "35px",
-                  margin: 0,
-                  color: "#202020",
-                }}
-              >
-                How Can We Help?
-              </h1>
-
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: "#e28c2f",
-                  marginTop: "8px",
-                  marginBottom: "20px",
-                  fontFamily: "Plus Jakarta Sans",
-                  fontWeight: 300,
-                }}
-              >
-                Contact Us today for your EduTech, HealthTech, Custom Web App,
-                Custom Mobile App, or AI Services.
-              </div>
-
-              {/* FORM */}
-              <form
-                action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-                method="POST"
-              >
-                <input type="hidden" name="oid" value="00D5g000005H9ev" />
+              {/* First Name */}
+              <div className="form-row">
+                <label htmlFor="first_name">First Name</label>
                 <input
-                  type="hidden"
-                  name="retURL"
-                  value="http://www.deligence.com/thank-you/"
-                />
-                <input
-                  type="hidden"
-                  name="captcha_settings"
-                  value='{"keyname":"deligence","fallback":"true","orgId":"00D5g000005H9ev","ts":""}'
-                />
-
-                <input
-                  id="first_name"
+                  type="text"
                   name="first_name"
-                  type="text"
+                  id="first_name"
                   maxLength="40"
-                  placeholder="First Name"
                   required
                 />
+              </div>
+
+              {/* Last Name */}
+              <div className="form-row">
+                <label htmlFor="last_name">Last Name</label>
                 <input
-                  id="last_name"
-                  name="last_name"
                   type="text"
+                  name="last_name"
+                  id="last_name"
                   maxLength="80"
-                  placeholder="Last Name"
                   required
                 />
+              </div>
+
+              {/* Email */}
+              <div className="form-row">
+                <label htmlFor="email">Email</label>
                 <input
-                  id="email"
-                  name="email"
                   type="email"
+                  name="email"
+                  id="email"
                   maxLength="80"
-                  placeholder="Email"
                   required
                 />
+              </div>
+
+              {/* Phone */}
+              <div className="form-row">
+                <label htmlFor="phone">Phone</label>
                 <input
-                  id="phone"
-                  name="phone"
                   type="tel"
+                  name="phone"
+                  id="phone"
                   maxLength="20"
-                  placeholder="Phone"
                   required
                 />
+              </div>
 
-                <label
-                  htmlFor="00N5g00000WltMz"
-                  style={{
-                    display: "block",
-                    marginBottom: "6px",
-                    fontWeight: 300,
-                    fontSize: "12px",
-                  }}
-                >
-                  How can we help you?
-                </label>
-
+              {/* How can we help you? */}
+              <div className="form-row">
+                <label htmlFor="00N5g00000WltMz">How can we help you?</label>
                 <select id="00N5g00000WltMz" name="00N5g00000WltMz">
                   <option value="">--None--</option>
                   <option value="AI Services">AI Services</option>
@@ -264,50 +126,49 @@ export default function ContactUsPage() {
                   <option value="EduTech">EduTech</option>
                   <option value="Any Other Query">Any Other Query</option>
                 </select>
+              </div>
 
+              {/* Message */}
+              <div className="form-row">
+                <label htmlFor="description">Message</label>
                 <textarea
-                  id="description"
                   name="description"
+                  id="description"
                   rows="5"
-                  placeholder="Message"
                   required
                 ></textarea>
+              </div>
 
+              {/* reCAPTCHA */}
+              <div className="form-row">
                 <div
                   className="g-recaptcha"
                   data-sitekey="6LfFPhkbAAAAAAFeuRG0XGEZIFTuBHw-WjdKuoDk"
                 ></div>
+              </div>
 
-                <input type="submit" name="submit" value="Submit" />
-              </form>
-            </div>
-          </div>
-        </div>
+              <button type="submit" className="btn block">
+                Submit
+              </button>
+            </form>
+          </article>
+        </section>
 
         {/* MAP */}
-        <div
-          className="map-wrapper"
-          style={{
-            marginTop: "40px",
-            borderRadius: "12px",
-            overflow: "hidden",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-          }}
-        >
+        <section style={{ marginTop: "40px" }}>
           <iframe
+            title="Deligence Technologies Location"
             width="100%"
             height="450"
             frameBorder="0"
             style={{ border: 0 }}
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA-5HSUfoXzDakVlrO_ePYb36f-IgvgJUk&q=Deligence+Technologies+Inc.+1+King+Street+West,+Toronto,+ON+M5H+1A1,+Canada&zoom=14"
             allowFullScreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA-5HSUfoXzDakVlrO_ePYb36f-IgvgJUk&q=Deligence+Technologies+Inc.+1+King+Street+West,+Toronto,+ON+M5H+1A1,+Canada&zoom=14"
           ></iframe>
-        </div>
-      </div>
+        </section>
+      </main>
     </Layout>
   )
 }
 
-export const Head = () => (
-  <SEOHead title="Contact Us" description="Contact Deligence Technologies" />
-)
+export default ContactUsPage
