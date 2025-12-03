@@ -298,7 +298,14 @@ const data = {
       text: "Technologies",
       children: [
         { id: "tech-1", href: "/langchain-services", text: "LangChain" },
-        { id: "tech-2", href: "/salesforce", text: "Salesforce" },
+        { id: "tech-2", href: "/salesforce", text: "Salesforce",
+           children: [
+        { id: "sf-1", href: "/salesforce/sales-cloud", text: "Sales Cloud" },
+        { id: "sf-2", href: "/salesforce/service-cloud", text: "Service Cloud" },
+        { id: "sf-3", href: "/salesforce/experience-cloud", text: "Experience Cloud" },
+        { id: "sf-4", href: "/salesforce/managed-services", text: "Managed Services" },
+      ],
+    },
         { id: "tech-3", href: "/mernstack-development", text: "Mernstack" },
         { id: "tech-4", href: "/meteorjs-development", text: "Meteor JS" },
         { id: "tech-5", href: "/flutter-services", text: "Flutter" },

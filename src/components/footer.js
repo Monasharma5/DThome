@@ -212,13 +212,14 @@ import {
 } from "./ui"
 
 const socialMedia = {
-  GITHUB: { url: "https://github.com", name: "GitHub", icon: <GitHub /> },
-  INSTAGRAM: { url: "https://instagram.com", name: "Instagram", icon: <Instagram /> },
-  TWITTER: { url: "https://twitter.com", name: "Twitter", icon: <Twitter /> },
-  YOUTUBE: { url: "https://youtube.com", name: "YouTube", icon: <Youtube /> },
-  FACEBOOK: { url: "https://facebook.com", name: "Facebook", icon: <Facebook /> },
-  LINKEDIN: { url: "https://linkedin.com", name: "LinkedIn", icon: <Linkedin /> },
-  EMAIL: { url: "mailto:contact@example.com", name: "Email", icon: <Mail /> },
+  GITHUB: { url: "https://github.com/DeligenceTechnologies/", name: "GitHub", icon: <GitHub /> },
+  INSTAGRAM: { url: "https://www.instagram.com/deligencetechnologies/", name: "Instagram", icon: <Instagram /> },
+  TWITTER: { url: "https://twitter.com/DeligenceTech", name: "Twitter", icon: <Twitter /> },
+  YOUTUBE: { url: "https://www.youtube.com/c/DeligenceTechnologies", name: "YouTube", icon: <Youtube /> },
+  FACEBOOK: { url: "https://www.facebook.com/deligencetechnologies/", name: "Facebook", icon: <Facebook /> },
+  LINKEDIN: { url: "https://www.facebook.com/deligencetechnologies/", name: "LinkedIn", icon: <Linkedin /> },
+  TEAMS: { url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com", name: "Teams", icon: <Teams/> }
+  EMAIL: { url: "sales@deligence.com", name: "Email", icon: <Mail /> },
 }
 
 const getSocialURL = ({ service, username }) => {
