@@ -197,7 +197,8 @@ import {
   Youtube,
   GitHub,
   Mail,
-  Linkedin
+  Linkedin,
+  Teams
 } from "react-feather"
 import {
   Container,
@@ -240,6 +241,7 @@ const data = {
     { service: "YOUTUBE" },
     { service: "FACEBOOK" },
     { service: "LINKEDIN" },
+    { service: "TEAMS" },
     { service: "EMAIL" },
   ],
 
