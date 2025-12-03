@@ -217,8 +217,8 @@ const socialMedia = {
   TWITTER: { url: "https://twitter.com/DeligenceTech", name: "Twitter", icon: <Twitter /> },
   YOUTUBE: { url: "https://www.youtube.com/c/DeligenceTechnologies", name: "YouTube", icon: <Youtube /> },
   FACEBOOK: { url: "https://www.facebook.com/deligencetechnologies/", name: "Facebook", icon: <Facebook /> },
-  LINKEDIN: { url: "https://www.facebook.com/deligencetechnologies/", name: "LinkedIn", icon: <Linkedin /> },
-  TEAMS: { url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com", name: "Teams", icon: <Teams/> }
+  LINKEDIN: { url: "https://in.linkedin.com/company/deligencetechnologies", name: "LinkedIn", icon: <Linkedin /> },
+  TEAMS: { url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com", name: "Teams", icon: <Teams/> },
   EMAIL: { url: "sales@deligence.com", name: "Email", icon: <Mail /> },
 }
 
