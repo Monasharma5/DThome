@@ -191,16 +191,6 @@ export default function Footer(props) {
 */
 import * as React from "react"
 import {
-  Twitter,
-  Instagram,
-  Facebook,
-  Youtube,
-  GitHub,
-  Mail,
-  Linkedin,
-  Teams
-} from "react-feather"
-import {
   Container,
   Flex,
   FlexList,
@@ -209,30 +199,62 @@ import {
   NavLink,
   Text,
   IconLink,
-  VisuallyHidden,
 } from "./ui"
 
+// ---- React Icons (works for SSR + has YouTube + Teams) ----
+import { FaGithub, FaInstagram, FaTwitter, FaYoutube, FaFacebook, FaLinkedin } from "react-icons/fa"
+import { SiMicrosoftteams } from "react-icons/si"
+import { MdEmail } from "react-icons/md"
+
+// ---- Social Definitions ----
 const socialMedia = {
-  GITHUB: { url: "https://github.com/DeligenceTechnologies/", name: "GitHub", icon: <GitHub /> },
-  INSTAGRAM: { url: "https://www.instagram.com/deligencetechnologies/", name: "Instagram", icon: <Instagram /> },
-  TWITTER: { url: "https://twitter.com/DeligenceTech", name: "Twitter", icon: <Twitter /> },
-  YOUTUBE: { url: "https://www.youtube.com/c/DeligenceTechnologies", name: "YouTube", icon: <Youtube /> },
-  FACEBOOK: { url: "https://www.facebook.com/deligencetechnologies/", name: "Facebook", icon: <Facebook /> },
-  LINKEDIN: { url: "https://in.linkedin.com/company/deligencetechnologies", name: "LinkedIn", icon: <Linkedin /> },
-  TEAMS: { url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com", name: "Teams", icon: <Teams/> },
-  EMAIL: { url: "sales@deligence.com", name: "Email", icon: <Mail /> },
+  GITHUB: {
+    url: "https://github.com/DeligenceTechnologies/",
+    name: "GitHub",
+    icon: <FaGithub size={20} />,
+  },
+  INSTAGRAM: {
+    url: "https://www.instagram.com/deligencetechnologies/",
+    name: "Instagram",
+    icon: <FaInstagram size={20} />,
+  },
+  TWITTER: {
+    url: "https://twitter.com/DeligenceTech",
+    name: "Twitter",
+    icon: <FaTwitter size={20} />,
+  },
+  YOUTUBE: {
+    url: "https://www.youtube.com/c/DeligenceTechnologies",
+    name: "YouTube",
+    icon: <FaYoutube size={20} />,
+  },
+  FACEBOOK: {
+    url: "https://www.facebook.com/deligencetechnologies/",
+    name: "Facebook",
+    icon: <FaFacebook size={20} />,
+  },
+  LINKEDIN: {
+    url: "https://in.linkedin.com/company/deligencetechnologies",
+    name: "LinkedIn",
+    icon: <FaLinkedin size={20} />,
+  },
+  TEAMS: {
+    url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com",
+    name: "Microsoft Teams",
+    icon: <SiMicrosoftteams size={20} />,
+  },
+  EMAIL: {
+    url: "mailto:sales@deligence.com",
+    name: "Email",
+    icon: <MdEmail size={20} />,
+  },
 }
 
-const getSocialURL = ({ service, username }) => {
-  const domain = socialMedia[service]?.url
-  if (!domain) return false
-  return username ? `${domain}/${username}` : domain
-}
-
+const getSocialURL = ({ service }) => socialMedia[service]?.url
 const getSocialIcon = ({ service }) => socialMedia[service]?.icon
 const getSocialName = ({ service }) => socialMedia[service]?.name
 
-// NEW FOOTER DATA
+// ---- Footer Navigation ----
 const data = {
   follow: [
     { service: "GITHUB" },
@@ -248,7 +270,7 @@ const data = {
   artificial: [
     { text: "AI Services", href: "/ai-services" },
     { text: "LangChain Services", href: "/langchain" },
-    { text: "Chatgpt Integration Services", href: "/chatgpt-integration" },
+    { text: "ChatGPT Integration Services", href: "/chatgpt-integration" },
     { text: "AI Chatbot Development", href: "/chatbot-development" },
   ],
 
@@ -266,17 +288,19 @@ const data = {
     { text: "Client Reviews", href: "/client-reviews" },
   ],
 
-  copyright: "© 2022 Gatsby Inc. All rights reserved",
+  copyright: "© Copyright 2014–2025 | Deligence Technologies Inc. | All rights reserved.",
 }
 
 export default function Footer() {
   return (
-    <Box as="footer" paddingY={6}
-    style={{ background: "#4e88c7", color: "#fff" }}
+    <Box
+      as="footer"
+      paddingY={6}
+      style={{ background: "#4e88c7", color: "#fff" }}
     >
       <Container>
 
-        {/* ---- 4-column footer using CSS GRID ---- */}
+        {/* GRID - 4 COLUMN FOOTER */}
         <div
           style={{
             display: "grid",
@@ -291,9 +315,14 @@ export default function Footer() {
             <Text variant="bold">FOLLOW US</Text>
             <Space size={3} />
 
-            <Flex gap={3}>
+            <Flex gap={3} style={{ flexWrap: "wrap" }}>
               {data.follow.map((item, i) => (
-                <IconLink key={i} to={getSocialURL(item)} style={{ color: "#fff" }}>
+                <IconLink
+                  key={i}
+                  to={getSocialURL(item)}
+                  aria-label={getSocialName(item)}
+                  style={{ color: "#fff" }}
+                >
                   {getSocialIcon(item)}
                 </IconLink>
               ))}
@@ -304,10 +333,11 @@ export default function Footer() {
           <div>
             <Text variant="bold">ARTIFICIAL INTELLIGENCE</Text>
             <Space size={3} />
-
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {data.artificial.map((item, i) => (
-                <NavLink key={i} to={item.href}>{item.text}</NavLink>
+                <NavLink key={i} to={item.href}>
+                  {item.text}
+                </NavLink>
               ))}
             </div>
           </div>
@@ -316,10 +346,11 @@ export default function Footer() {
           <div>
             <Text variant="bold">APP DEVELOPMENT</Text>
             <Space size={3} />
-
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {data.appdev.map((item, i) => (
-                <NavLink key={i} to={item.href}>{item.text}</NavLink>
+                <NavLink key={i} to={item.href}>
+                  {item.text}
+                </NavLink>
               ))}
             </div>
           </div>
@@ -328,10 +359,11 @@ export default function Footer() {
           <div>
             <Text variant="bold">RESOURCES</Text>
             <Space size={3} />
-
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {data.resources.map((item, i) => (
-                <NavLink key={i} to={item.href}>{item.text}</NavLink>
+                <NavLink key={i} to={item.href}>
+                  {item.text}
+                </NavLink>
               ))}
             </div>
           </div>
@@ -340,10 +372,8 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <Space size={4} />
-        <Flex variant="center" style={{ marginbottom: "10px" }}>
-          <Text variant="small">
-            © Copyright 2014–2025 | Deligence Technologies Inc. | All rights reserved.
-          </Text>
+        <Flex variant="center">
+          <Text variant="small">{data.copyright}</Text>
         </Flex>
 
       </Container>
