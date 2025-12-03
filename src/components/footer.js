@@ -203,7 +203,7 @@ import {
 
 // ---- React Icons (works for SSR + has YouTube + Teams) ----
 import { FaGithub, FaInstagram, FaTwitter, FaYoutube, FaFacebook, FaLinkedin } from "react-icons/fa"
-import { SiMicrosoftteams } from "react-icons/si"
+//import { SiMicrosoftteams } from "react-icons/si"
 import { MdEmail } from "react-icons/md"
 
 // ---- Social Definitions ----
@@ -238,11 +238,11 @@ const socialMedia = {
     name: "LinkedIn",
     icon: <FaLinkedin size={20} />,
   },
-  TEAMS: {
-    url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com",
-    name: "Microsoft Teams",
-    icon: <SiMicrosoftteams size={20} />,
-  },
+ // TEAMS: {
+  //  url: "https://teams.microsoft.com/l/chat/0/0?users=sanjay@deligence.com",
+ //   name: "Microsoft Teams",
+//    icon: <SiMicrosoftteams size={20} />,
+ // },
   EMAIL: {
     url: "mailto:sales@deligence.com",
     name: "Email",
@@ -263,7 +263,7 @@ const data = {
     { service: "YOUTUBE" },
     { service: "FACEBOOK" },
     { service: "LINKEDIN" },
-    { service: "TEAMS" },
+    //{ service: "TEAMS" },
     { service: "EMAIL" },
   ],
 
