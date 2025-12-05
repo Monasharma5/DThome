@@ -19,11 +19,6 @@ export default function Homepage(props) {
     </Layout>   
   )
 }
-
-<ContactUsPage>
-      
-    </ContactUsPage>
-
     
 export const Head = (props) => {
   const { homepage } = props.data
