@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import { Container, Box, Heading } from "../components/ui"
 import SEOHead from "../components/head"
+import ContactUsPage from "../components/contact-us"
 
 export default function Page(props) {
   const { page } = props.data
