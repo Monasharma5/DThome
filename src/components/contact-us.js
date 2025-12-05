@@ -5,7 +5,7 @@ import SEOHead from "../components/head"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 
-const ContactUsPage = () => {
+export default function ContactUsPage() {
   return (
     <Layout>
       <SEOHead title="Contact Us" description="Contact Deligence Technologies" />
@@ -22,9 +22,12 @@ const ContactUsPage = () => {
 
             <p>
               <strong>Deligence Technologies Inc.</strong>
-              <br />
-              1 King Street West<br />
-              Suite 4800 – 274<br />
+              
+
+              1 King Street West
+
+              Suite 4800 – 274
+
               Toronto, Ontario M5H 1A1, Canada
             </p>
 
@@ -173,5 +176,3 @@ const ContactUsPage = () => {
     </Layout>
   )
 }
-
-export default ContactUsPage
