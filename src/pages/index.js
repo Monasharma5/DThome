@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
+import ContactUsPage from "../components/contact-us"
 
 export default function Homepage(props) {
   const { homepage } = props.data
@@ -15,9 +16,15 @@ export default function Homepage(props) {
     const Component = sections[blocktype] || Fallback
     return <Component key={id} {...componentProps} />
 })}
-    </Layout>
+    </Layout>   
   )
 }
+
+<ContactUsPage>
+      
+    </ContactUsPage>
+
+    
 export const Head = (props) => {
   const { homepage } = props.data
   return <SEOHead {...homepage} />
