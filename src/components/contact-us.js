@@ -4,7 +4,6 @@ import Layout from "../components/layout"
 import SEOHead from "../components/head"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
-import SEO from "../components/SEO"
 
 const ContactUsPage = () => {
   return (
