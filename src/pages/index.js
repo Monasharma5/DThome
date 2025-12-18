@@ -4,7 +4,6 @@ import Layout from "../components/layout"
 import * as sections from "../components/sections"
 import Fallback from "../components/fallback"
 import SEOHead from "../components/head"
-import ContactUsPage from "../components/contact-us"
 
 export default function Homepage(props) {
   const { homepage } = props.data

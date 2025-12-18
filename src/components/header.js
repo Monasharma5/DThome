@@ -276,6 +276,7 @@ const data = {
       children: [
         { id: "srv-1", href: "/web-apps", text: "Web Development" },
         { id: "srv-2", href: "/mobile-apps", text: "Mobile App" },
+        { id: "srv-2", href: "/it-outsourcing-services", text: "IT Outsourcing" },
       ],
     },
     {

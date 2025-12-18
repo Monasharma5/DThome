@@ -1,14 +1,9 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Layout from "../components/layout"
 import SEOHead from "../components/head"
-import * as sections from "../components/sections"
-import Fallback from "../components/fallback"
 
-export default function ContactUsPage() {
+
+export default function ContactUs() {
   return (
-    <Layout>
-      <SEOHead title="Contact Us" description="Contact Deligence Technologies" />
 
       <main className="page">
         <section className="contact-page">
@@ -173,6 +168,6 @@ export default function ContactUsPage() {
           ></iframe>
         </section>
       </main>
-    </Layout>
+    
   )
 }

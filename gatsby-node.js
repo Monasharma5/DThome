@@ -535,15 +535,71 @@ exports.onCreateNode = ({
   }
 }
 
-exports.createPages = ({ actions }) => {
-  const { createSlice } = actions
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage, createSlice } = actions
+
+  // ----------------
+  // SLICES
+  // ----------------
   createSlice({
     id: "header",
     component: require.resolve("./src/components/header.js"),
   })
+
   createSlice({
     id: "footer",
     component: require.resolve("./src/components/footer.js"),
   })
+
+  // ----------------
+  // FETCH ALL POSTS
+  // ----------------
+  const result = await graphql(`
+    {
+      allWpPost(sort: { date: DESC }) {
+        nodes {
+          id
+          uri
+        }
+      }
+    }
+  `)
+
+  if (result.errors) {
+    throw result.errors
+  }
+
+  const posts = result.data.allWpPost.nodes
+
+  // ----------------
+  // SINGLE BLOG POSTS
+  // ----------------
+  posts.forEach(post => {
+    createPage({
+      path: post.uri, // e.g. /blog/my-post/
+      component: require.resolve("./src/templates/blog-post.js"),
+      context: {
+        id: post.id,
+      },
+    })
+  })
+
+  // ----------------
+  // BLOG INDEX PAGINATION
+  // ----------------
+  const postsPerPage = 10
+  const numPages = Math.ceil(posts.length / postsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: require.resolve("./src/templates/blog-index.js"),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        currentPage: i + 1,
+        numPages,
+      },
+    })
+  })
 }
-      

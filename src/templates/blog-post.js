@@ -1,4 +1,5 @@
 import * as React from "react"
+import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import {
@@ -10,60 +11,99 @@ import {
   Text,
   Avatar,
 } from "../components/ui"
-import { avatar as avatarStyle } from "../components/ui.css"
-import * as styles from "./blog-post.css"
 import SEOHead from "../components/head"
 
-export default function BlogPost(props) {
+export default function BlogPost({ data }) {
+  const post = data.wpPost
+
+  if (!post) return null
+
   return (
     <Layout>
       <Container>
         <Box paddingY={5}>
+          {/* Title */}
           <Heading as="h1" center>
-            {props.title}
+         {/*  {post.title} */} 
           </Heading>
-          <Space size={4} />
-          {props.author && (
+
+          <Space size={3} />
+
+          {/* Author */}
+          {post.author?.node && (
             <Box center>
               <Flex>
-                {props.author.avatar &&
-                  (!!props.author.avatar.gatsbyImageData ? (
-                    <Avatar
-                      {...props.author.avatar}
-                      image={props.author.avatar.gatsbyImageData}
-                    />
-                  ) : (
-                    <img
-                      src={props.author.avatar.url}
-                      alt={props.author.name}
-                      className={avatarStyle}
-                    />
-                  ))}
-                <Text variant="bold">{props.author.name}</Text>
+                {post.author.node.avatar?.url && (
+                  <Avatar
+                    src={post.author.node.avatar.url}
+                    alt={post.author.node.name}
+                  />
+                )}
+              {/* <Text variant="bold">{post.author.node.name}</Text> */}  
               </Flex>
             </Box>
           )}
+
+          <Space size={2} />
+
+          {/* Date */}
+         {/* <Text center>{post.date}</Text> */} 
+
           <Space size={4} />
-          <Text center>{props.date}</Text>
-          <Space size={4} />
-          {props.image && (
+
+          {/* Featured Image */}
+          {post.featuredImage?.node?.gatsbyImageData && (
             <GatsbyImage
-              alt={props.image.alt}
-              image={props.image.gatsbyImageData}
+              image={post.featuredImage.node.gatsbyImageData}
+              alt={post.featuredImage.node.altText || post.title}
             />
           )}
+
           <Space size={5} />
+
+          {/* Content */}
           <div
-            className={styles.blogPost}
-            dangerouslySetInnerHTML={{
-              __html: props.html,
-            }}
+            dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </Box>
       </Container>
     </Layout>
   )
 }
-export const Head = (props) => {
-  return <SEOHead {...props} description={props.excerpt} />
-}
+
+/* ---------------- SEO ---------------- */
+
+export const Head = ({ data }) => (
+  <SEOHead
+    title={data.wpPost.title}
+    description={data.wpPost.excerpt}
+  />
+)
+
+/* ---------------- QUERY ---------------- */
+
+export const query = graphql`
+  query BlogPostById($id: String!) {
+    wpPost(id: { eq: $id }) {
+      id
+      title
+      excerpt
+      content
+      date
+      author {
+        node {
+          name
+          avatar {
+            url
+          }
+        }
+      }
+      featuredImage {
+        node {
+          altText
+          gatsbyImageData(width: 600, height: 400)
+        }
+      }
+    }
+  }
+`

@@ -261,6 +261,7 @@ const data = {
     { text: "Success Stories", href: "/success-stories" },
     { text: "Partnerships", href: "/partnerships" },
     { text: "Client Reviews", href: "/client-reviews" },
+    { text: "Blog", href: "/blog" },
   ],
 
   copyright: "© 2022 Gatsby Inc. All rights reserved",

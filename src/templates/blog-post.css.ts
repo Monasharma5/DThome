@@ -54,11 +54,13 @@ globalStyle(`${blogPost} h2`, {
 globalStyle(`${blogPost} h3`, {
   fontSize: theme.fontSizes[4],
   fontWeight: theme.fontWeights.bold,
+  color: theme.colors.black,
 })
 
 globalStyle(`${blogPost} h4`, {
   fontSize: theme.fontSizes[3],
   fontWeight: theme.fontWeights.bold,
+  
 })
 
 globalStyle(`${blogPost} h5, ${blogPost} h6`, {
