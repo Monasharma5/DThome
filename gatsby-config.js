@@ -5,6 +5,12 @@ require("dotenv").config({
 })
 
 module.exports = {
+  flags: {
+    FAST_DEV: true,
+    PARALLEL_SOURCING: true,
+    PRESERVE_WEBPACK_CACHE: true,
+  },
+
   siteMetadata: {
     siteUrl: "https://gatsbywordpresshomepage.gatsbyjs.io/",
     title: "Gatsby WordPress Homepage Starter",
@@ -33,9 +39,9 @@ module.exports = {
         },
       },
     },
-    "gatsby-plugin-sharp",
+    //"gatsby-plugin-sharp",
     "gatsby-plugin-image",
-    "gatsby-transformer-sharp",
+    //"gatsby-transformer-sharp",
     "gatsby-plugin-vanilla-extract",
     {
       resolve: "gatsby-plugin-manifest",
