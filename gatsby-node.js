@@ -587,7 +587,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // ----------------
   // BLOG INDEX PAGINATION
   // ----------------
-  const postsPerPage = 10
+  const postsPerPage = 100
   const numPages = Math.ceil(posts.length / postsPerPage)
 
   Array.from({ length: numPages }).forEach((_, i) => {
@@ -595,8 +595,9 @@ exports.createPages = async ({ graphql, actions }) => {
       path: i === 0 ? `/blog` : `/blog/${i + 1}`,
       component: require.resolve("./src/templates/blog-index.js"),
       context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
+    
+       // limit: postsPerPage,
+       // skip: i * postsPerPage,
         currentPage: i + 1,
         numPages,
       },

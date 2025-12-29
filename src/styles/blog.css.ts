@@ -108,10 +108,6 @@ globalStyle(`${blogContent} div.fusion-alignright`, {
   display: "none",
 })
 /* Hide the first title link (duplicate) */
-globalStyle(`${blogContent} div.fusion-post-content-container
-  `, {
+globalStyle(`${blogContent} div.fusion-post-content-container`, {
   display: "none",
-})
-globalStyle(`${blogContent} div.fusion-meta-info a`, {
-    display: "none",
 })
