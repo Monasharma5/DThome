@@ -1,5 +1,5 @@
 import { style, globalStyle } from "@vanilla-extract/css"
-import { theme } from "../../theme.css"
+import { theme } from "../theme.css"
 
 /* Wrapper */
 export const blogContent = style({
@@ -96,7 +96,7 @@ globalStyle(`${blogContent} a`, {
 })
 
 globalStyle(`${blogContent} a:hover`, {
-  textDecoration: "underline",
+  textDecoration: "none",
 })
 
 /* Hide the first title link (duplicate) */
@@ -111,4 +111,7 @@ globalStyle(`${blogContent} div.fusion-alignright`, {
 globalStyle(`${blogContent} div.fusion-post-content-container
   `, {
   display: "none",
+})
+globalStyle(`${blogContent} div.fusion-meta-info a`, {
+    display: "none",
 })
