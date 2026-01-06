@@ -146,9 +146,8 @@ export const desktopHeaderOuter = style({
 
 export const desktopHeaderInner = style({
   // Keep the content centered via your Container component.
-  paddingTop: theme.space[4],
+  paddingTop: theme.space[3],
   paddingBottom: theme.space[4],
-  color: "white",
 })
 
 /* Desktop nav: keep display none on small screens, show on larger */
@@ -214,22 +213,24 @@ export const mobileNavLink = style({
 export const dropdownWrapper = style({
   position: "relative",
   listStyle: "none", // ensure wrapper has no list-style
+  alignItems: "left"
 })
 
 export const dropdownMenu = style({
   position: "absolute",
   top: "100%",
   left: 0,
-  backgroundColor: "#4e88c7", // requested dropdown bg
-  color: "white",
+  backgroundColor: "#4e88c7", 
   borderRadius: "6px",
-  minWidth: "200px",
+  minWidth: "220px",
   zIndex: 100,
   display: "none",
-  listStyle: "none", // remove bullets
+  listStyle: "none",
   margin: 0,
   padding: "8px 0",
+  boxShadow: "0 12px 30px rgba(0,0,0,0.12)",
 })
+
 
 export const showOnHover = style({
   selectors: {
@@ -244,18 +245,24 @@ export const showOnHover = style({
 export const dropdownItem = style({
   display: "block",
   padding: "8px 16px",
-  color: "white",
+  color: "#000000 !important", 
   textDecoration: "none",
+  fontWeight: 500,
   selectors: {
     "&:hover": {
-      backgroundColor: "#ffa737",
-      color: "black",
+      backgroundColor: "#ffa737", 
+      color: "#ffffff !important", 
     },
   },
 })
+
 
 /* Make sure anchor tags inside the header inner area are white */
 globalStyle(`${desktopHeaderInner} a`, {
   color: "white !important",
   textDecoration: "none",
+})
+
+globalStyle(`${dropdownMenu} li`, {
+  listStyle: "none",
 })

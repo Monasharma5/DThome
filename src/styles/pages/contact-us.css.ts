@@ -21,7 +21,7 @@ const slideIn = keyframes({
 export const page = style({
   minHeight: "100vh",
   padding: "2rem 1rem",
-  background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
+  //background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)",
   "@media": {
     [media.small]: {
       padding: "4rem 2rem",
@@ -98,6 +98,7 @@ globalStyle(
    LEFT COLUMN (TEXT)
 ======================= */
 export const leftContent = style({
+  background: "#000",
   "@media": {
     [media.small]: {
       gridColumn: "1",
@@ -258,10 +259,15 @@ globalStyle(`${content} iframe`, {
 
 
 globalStyle(`
-  .fusion-title-text p,
   .fusion-title-text h1
 `, {
   fontSize: "30px",
   color: "#4e88c7",
 })
 
+globalStyle(`
+  .fusion-title-heading #text,
+`, {
+  fontSize: "30px",
+  color: "#4e88c7",
+})

@@ -66,7 +66,7 @@ const letterSpacings = {
 
 const sizes = {
   container: "1280px",
-  narrow: "1024px",
+  narrow: "1324px",
   wide: "1640px",
   tight: "848px",
   avatar: "48px",

@@ -15,10 +15,14 @@ export default function AboutLogoList(props) {
       <Container width="narrow">
         <Box paddingY={6}>
           <FlexList gap={5} variant="center">
-            {props.logos.map((logo, i) => (
+            {props.logos?.map((logo, i) => (
               <li key={`${logo.id}-${i}`}>
-                <LogoItem {...logo} />
-              </li>
+    {logo.image ? (
+      <LogoItem {...logo} />
+    ) : (
+      <img src={logo.src} alt={logo.alt} />
+    )}
+  </li>
             ))}
           </FlexList>
         </Box>

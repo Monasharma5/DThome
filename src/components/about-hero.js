@@ -6,13 +6,18 @@ import * as styles from "./about-hero.css"
 
 export default function AboutHero(props) {
   return (
-    <Section>
+    <Section className="about-hero">
       <Container>
         <SuperHeading className={styles.aboutHeroHeader}>
           {props.heading}
         </SuperHeading>
         {props.text && (
           <Text className={styles.aboutHeroText}>{props.text}</Text>
+        )}
+        {props.ctaText && props.ctaLink && (
+          <a href={props.ctaLink} className={styles.heroButton}>
+            {props.ctaText}
+          </a>
         )}
       </Container>
       <Container width="wide">

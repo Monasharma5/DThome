@@ -8,13 +8,22 @@ import SEOHead from "../components/head"
 import * as contactStyles from "../styles/pages/contact-us.css"
 import * as blogStyles from "../styles/pages/blog.css"
 import * as aboutStyles from "../styles/pages/about-us.css"
+import * as automationStyles from "../styles/pages/ai-automation.css"
 
-export default function Page({ data }) {
+//export default function Page({ data }) {
+ // const { page } = data
+
+ export default function Page({ data }) {
+  if (!data?.page) {
+    return null // or a fallback UI
+  }
+
   const { page } = data
 
   const isContactUs = page.slug === "contact-us"
   const isBlog = page.slug === "blog"
   const isAboutUs = page.slug === "about-us"
+  const isAiAutomation = page.slug === "ai-automation-services"
 
   return (
     <Layout>
@@ -33,6 +42,7 @@ export default function Page({ data }) {
       )}
 
       {/* CONTACT PAGE */}
+    
       {isContactUs && (
         <main className={contactStyles.page}>
           <header className={contactStyles.header}>
@@ -65,14 +75,31 @@ export default function Page({ data }) {
           </section>
         </main>
       )}
+ 
+{/* aiautomation PAGE */} 
+
+      {isAiAutomation && (
+        <main className={automationStyles.page}>
+          <header className={automationStyles.header}>
+            {page.description && <p>{page.description}</p>}
+          </header>
+
+          <section className={automationStyles.content}>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: page.html,
+              }}
+            />
+          </section>
+        </main>
+      )}
 
 
-{/* ✅ DEFAULT PAGE (THIS WAS MISSING) */}
-      {!isBlog && !isContactUs && !isAboutUs && (
-        <main>
+      {!isBlog && !isContactUs && !isAboutUs && !isAiAutomation &&(
+                <main>
           <Box paddingY={5}>
             <Container width="narrow">
-              <Heading as="h1">{page.title}</Heading>
+             {/*  <Heading as="h1">{page.title}</Heading>*/}
               <div
                 dangerouslySetInnerHTML={{
                   __html: page.html,
@@ -82,6 +109,17 @@ export default function Page({ data }) {
           </Box>
         </main>
       )}
+
+{/*
+
+{!isBlog && !isContactUs && !isAboutUs && (
+  <main className={automationStyles.page}>
+    <div className="wp-page-content">
+      <div dangerouslySetInnerHTML={{ __html: page.html }} />
+    </div>
+  </main>
+)}
+*/}
     </Layout>
   )
 }
