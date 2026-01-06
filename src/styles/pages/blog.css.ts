@@ -135,11 +135,13 @@ globalStyle(".fusion-post-grid h2", {
   fontSize: "24px",
   lineHeight: "1.4",
   fontWeight: "600",
+  textAlign: "left !important",
 })
 
 globalStyle(".fusion-post-grid h2 a", {
   color: "#000000 !important",
   textDecoration: "none !important",
+ 
 
 })
 
@@ -156,4 +158,8 @@ globalStyle("ul, li", {
   margin: 0,
   padding: 0,
   listStyle: "none",
+})
+
+globalStyle(".fusion-post-slideshow", {
+  display: "none",
 })
