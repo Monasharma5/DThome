@@ -258,7 +258,7 @@ const data = {
   resources: [
     { text: "Contact Us", href: "/contact-us" },
     { text: "About Us", href: "/about-us" },
-    { text: "Success Stories", href: "/success-stories" },
+    { text: "Success Stories", href: "/portfolio" },
     { text: "Partnerships", href: "/partnerships" },
     { text: "Client Reviews", href: "/client-reviews" },
     { text: "Blog", href: "/blog" },

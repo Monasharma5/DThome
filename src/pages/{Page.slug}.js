@@ -7,15 +7,20 @@ import SEOHead from "../components/head"
 /* Page-specific styles */
 import * as contactStyles from "../styles/pages/contact-us.css"
 import * as blogStyles from "../styles/pages/blog.css"
-import * as aboutStyles from "../styles/pages/about-us.css"
+import * as aboutStyles from "../styles/pages/about-us.css.ts"
 import * as automationStyles from "../styles/pages/ai-automation.css"
 
 //export default function Page({ data }) {
+ //const { page } = data
+ //-------------------------
+ //export default function Page({ data }) {
+ // if (!data) return null
  // const { page } = data
 
- export default function Page({ data }) {
+
+export default function Page({ data }) {
   if (!data?.page) {
-    return null // or a fallback UI
+    return null
   }
 
   const { page } = data
