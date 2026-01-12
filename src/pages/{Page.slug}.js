@@ -7,7 +7,6 @@ import SEOHead from "../components/head"
 /* Page-specific styles */
 import * as contactStyles from "../styles/pages/contact-us.css"
 import * as blogStyles from "../styles/pages/blog.css"
-import * as aboutStyles from "../styles/pages/about-us.css.ts"
 import * as automationStyles from "../styles/pages/ai-automation.css"
 
 //export default function Page({ data }) {
@@ -27,7 +26,6 @@ export default function Page({ data }) {
 
   const isContactUs = page.slug === "contact-us"
   const isBlog = page.slug === "blog"
-  const isAboutUs = page.slug === "about-us"
   const isAiAutomation = page.slug === "ai-automation-services"
 
   return (
@@ -64,23 +62,6 @@ export default function Page({ data }) {
         </main>
       )}
 
-      {/* ABOUT PAGE */}
-      {isAboutUs && (
-        <main className={aboutStyles.page}>
-          <header className={aboutStyles.header}>
-            {page.description && <p>{page.description}</p>}
-          </header>
-
-          <section className={aboutStyles.content}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: page.html,
-              }}
-            />
-          </section>
-        </main>
-      )}
- 
 {/* aiautomation PAGE */} 
 
       {isAiAutomation && (
@@ -100,7 +81,7 @@ export default function Page({ data }) {
       )}
 
 
-      {!isBlog && !isContactUs && !isAboutUs && !isAiAutomation &&(
+      {!isBlog && !isContactUs && !isAiAutomation &&(
                 <main>
           <Box paddingY={5}>
             <Container width="narrow">

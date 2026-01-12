@@ -8,10 +8,10 @@ import AboutLeadership from "../components/about-leadership"
 import AccordionCard from "../components/accordion-card"
 
 import { Section, Container, Heading, Text, FlexList, Box } from "../components/ui"
-import * as styles from "../styles/pages/about-us.css.ts"
+import * as styles from "../styles/pages/about-us.css"
 
 export default function AboutUs() {
- // const [openIndex, setOpenIndex] = React.useState(-1)
+  const [openIndex, setOpenIndex] = React.useState(-1)
   return (
       <main className={styles.page}>
 

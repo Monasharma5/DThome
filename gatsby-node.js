@@ -515,6 +515,9 @@ exports.onCreateNode = ({
         })
 
         break
+      case "about-us":
+        // Skip creating a Page node for about-us - it's a custom page
+        break
       default:
         actions.createNode({
           ...node.page,
