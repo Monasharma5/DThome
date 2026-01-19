@@ -516,6 +516,7 @@ exports.onCreateNode = ({
 
         break
       case "about-us":
+         case "generative-ai-development-services":
         // Skip creating a Page node for about-us - it's a custom page
         break
       default:
